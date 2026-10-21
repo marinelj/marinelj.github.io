@@ -36,6 +36,8 @@ export type Profile = {
   contact: { email: string; github: string; githubUsername: string; linkedin: string };
   experience: Job[];
   education: { school: string; degree: string }[];
+  /** Short list for the home page; the full set is in `skills`. */
+  coreSkills: string[];
   skills: { category: string; items: string[] }[];
   languages: { name: string; level: string; note?: string }[];
   certifications: string[];

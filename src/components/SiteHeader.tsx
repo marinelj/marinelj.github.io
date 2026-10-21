@@ -36,7 +36,10 @@ function isCurrent(pathname: string, href: string) {
 
 function Monogram() {
   return (
-    <span className="inline-flex size-[30px] items-center justify-center rounded-lg bg-fg text-[13px] font-semibold tracking-tight text-bg">
+    <span
+      className="inline-flex size-[30px] items-center justify-center rounded-lg bg-fg text-[13px] font-semibold tracking-tight text-bg"
+      aria-hidden="true"
+    >
       JL
     </span>
   );
@@ -60,7 +63,6 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
         <Link
           href="/"
           className="inline-flex min-h-11 items-center gap-2.5 rounded-lg text-fg"
-          aria-label="Jia Li, home"
         >
           <Monogram />
           <span className="text-base font-semibold">Jia Li</span>
@@ -164,7 +166,7 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
           })}
         </nav>
 
-        <fieldset className="flex flex-col gap-2.5 px-5 pt-7 sm:px-6">
+        <fieldset className="mt-7 flex flex-col gap-2.5 px-5 sm:px-6">
           <legend className="eyebrow mb-2.5 text-fg-3">Appearance</legend>
           <div className="grid grid-cols-3 gap-1 rounded-xl bg-surface-2 p-1">
             {APPEARANCE.map((option) => (

@@ -125,6 +125,7 @@
   "education": [
     { "school": "Henan University", "degree": "Bachelor of Economics" }
   ],
+  "coreSkills": ["Batch & streaming ETL/ELT", "MaxCompute", "High-throughput ingest", "Dimensional modeling", "Statistical drift detection", "A/B testing", "PyTorch embedding pipelines", "NL2SQL", "SQL (expert)", "Python", "Java"],
   "skills": [
     { "category": "ETL / ELT & pipelines", "items": ["High-throughput ingest", "Batch & streaming ETL/ELT", "Multi-source reconciliation", "Regex / log parsing", "Incremental loads & CDC"] },
     { "category": "Data platform & warehouse", "items": ["MaxCompute (MPP, Spark-class)", "Hive", "Custom stateful UDAFs", "Dimensional modeling (Kimball, SCD)", "Query & cost optimization", "Partitioning"] },
