@@ -16,6 +16,17 @@ export function formatDate(iso: string): string {
   return dateFormat.format(new Date(iso));
 }
 
+const monthDayFormat = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  timeZone: "UTC",
+});
+
+/** "2026-10-19T18:10:06Z" → "Oct 19", for tight spots where the year is shown nearby. */
+export function formatMonthDay(iso: string): string {
+  return monthDayFormat.format(new Date(iso));
+}
+
 /** "2024-04-29T15:35:36Z" → "Apr 2024". */
 export function formatMonthYear(iso: string): string {
   return monthYearFormat.format(new Date(iso));

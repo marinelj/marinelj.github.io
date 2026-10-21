@@ -40,7 +40,7 @@ export type LanguageSlice = {
   members?: string[];
 };
 
-export type RepoView = Repo & {
+export type RepoView = Omit<Repo, "languages"> & {
   languageColor: ChartColor;
   /** The repo's own language mix, colored like the overall breakdown. */
   segments: { name: string; share: number; color: ChartColor }[];
@@ -95,11 +95,11 @@ export function repoViews(repos: Repo[] = github.repos): RepoView[] {
   const colorFor = (name: string | null): ChartColor =>
     (name && colors.get(name)) || "chart-other";
 
-  return repos.map((repo) => {
-    const total = Object.values(repo.languages).reduce((sum, bytes) => sum + bytes, 0);
+  return repos.map(({ languages, ...repo }) => {
+    const total = Object.values(languages).reduce((sum, bytes) => sum + bytes, 0);
     const segments: RepoView["segments"] = [];
     let other = 0;
-    for (const [name, bytes] of Object.entries(repo.languages).sort((a, b) => b[1] - a[1])) {
+    for (const [name, bytes] of Object.entries(languages).sort((a, b) => b[1] - a[1])) {
       if (colorFor(name) === "chart-other") other += bytes;
       else segments.push({ name, share: bytes / total, color: colorFor(name) });
     }
