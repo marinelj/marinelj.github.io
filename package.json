@@ -11,7 +11,8 @@
     "build": "next build",
     "start": "npx --yes serve@14 out",
     "lint": "eslint",
-    "fetch:github": "node scripts/fetch-github.ts"
+    "fetch:github": "node scripts/fetch-github.ts",
+    "check:exclusions": "node scripts/check-exclusions.ts"
   },
   "dependencies": {
     "geist": "^1.8.1",
