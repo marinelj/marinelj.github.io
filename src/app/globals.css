@@ -1,67 +1,76 @@
 @import "tailwindcss";
 
 /*
- * Design tokens ("Quiet precision"). Light is the default; dark applies when the
- * system prefers it (and the visitor hasn't picked light), or when chosen explicitly.
- * Every text/surface pair here meets WCAG AA; chart colors were validated for
+ * Design tokens ("Fresh light"): a lavender-white ground, ink text, one violet accent
+ * and pastel tints for widgets. Light is the default for every visitor; the softer
+ * indigo dark theme only applies when someone picks it with the toggle.
+ * Every text/surface pair meets WCAG AA; chart colors were validated for
  * color-vision deficiency against the card surface of each theme.
  */
 :root {
-  --bg: #f7f7f4;
+  --bg: #fafaff;
   --surface: #ffffff;
-  --surface-2: #f0f0ec;
-  --line: #e2e1db;
-  --fg: #121211;
-  --fg-2: #4a4945;
-  --fg-3: #6b6a64;
-  --accent: #0f766e;
-  --accent-hover: #115e59;
-  --accent-soft: #e1f0ed;
+  --surface-2: #f3f1fe;
+  --line: #e7e4f6;
+  --fg: #1e1b3a;
+  --fg-2: #4b4868;
+  --fg-3: #65627f;
+  --accent: #5b45e8;
+  --accent-hover: #4a35d4;
+  --accent-soft: #eeeaff;
+  --accent-2: #b8296a;
   --on-accent: #ffffff;
-  --chart-1: #2a78d6;
-  --chart-2: #eb6834;
-  --chart-3: #1baf7a;
-  --chart-other: #b4b3ac;
+  --shadow: rgb(91 69 232 / 0.2);
+  /* Pastel widget tints, each with a stronger "ink" for its icon. */
+  --tint-lavender: #eeeaff;
+  --ink-lavender: #5b45e8;
+  --tint-sky: #e0f0ff;
+  --ink-sky: #1f7ae0;
+  --tint-peach: #ffe9df;
+  --ink-peach: #d24f1c;
+  --tint-mint: #ddf6ea;
+  --ink-mint: #0f7650;
+  --tint-pink: #ffe5f0;
+  --ink-pink: #d63a7a;
+  --tint-lemon: #fff5cc;
+  --ink-lemon: #946600;
+  --chart-1: #6b4ef0;
+  --chart-2: #f0704a;
+  --chart-3: #0e9fb0;
+  --chart-other: #c9c5dd;
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0d0e0f;
-    --surface: #151719;
-    --surface-2: #1c1f22;
-    --line: #2a2e32;
-    --fg: #ededea;
-    --fg-2: #b9b8b2;
-    --fg-3: #8f8e88;
-    --accent: #2dd4bf;
-    --accent-hover: #5eead4;
-    --accent-soft: #0f2a26;
-    --on-accent: #0d0e0f;
-    --chart-1: #3987e5;
-    --chart-2: #d95926;
-    --chart-3: #199e70;
-    --chart-other: #55595e;
-    color-scheme: dark;
-  }
-}
-
 :root[data-theme="dark"] {
-  --bg: #0d0e0f;
-  --surface: #151719;
-  --surface-2: #1c1f22;
-  --line: #2a2e32;
-  --fg: #ededea;
-  --fg-2: #b9b8b2;
-  --fg-3: #8f8e88;
-  --accent: #2dd4bf;
-  --accent-hover: #5eead4;
-  --accent-soft: #0f2a26;
-  --on-accent: #0d0e0f;
-  --chart-1: #3987e5;
-  --chart-2: #d95926;
-  --chart-3: #199e70;
-  --chart-other: #55595e;
+  --bg: #14122b;
+  --surface: #1c1a38;
+  --surface-2: #252248;
+  --line: #343062;
+  --fg: #f3f1ff;
+  --fg-2: #c8c4e6;
+  --fg-3: #a29ec6;
+  --accent: #a897ff;
+  --accent-hover: #c2b6ff;
+  --accent-soft: #2b2560;
+  --accent-2: #ff8fc0;
+  --on-accent: #14122b;
+  --shadow: rgb(0 0 0 / 0.4);
+  --tint-lavender: #2a2550;
+  --ink-lavender: #a897ff;
+  --tint-sky: #1b2e4a;
+  --ink-sky: #6cb2ff;
+  --tint-peach: #3a2626;
+  --ink-peach: #ff9a73;
+  --tint-mint: #17352c;
+  --ink-mint: #4fd1a0;
+  --tint-pink: #3a1f33;
+  --ink-pink: #ff7fb2;
+  --tint-lemon: #3a3219;
+  --ink-lemon: #f2c94c;
+  --chart-1: #8a72f7;
+  --chart-2: #dc6840;
+  --chart-3: #1a9fb8;
+  --chart-other: #4a4670;
   color-scheme: dark;
 }
 
@@ -76,7 +85,20 @@
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
   --color-accent-soft: var(--accent-soft);
+  --color-accent-2: var(--accent-2);
   --color-on-accent: var(--on-accent);
+  --color-tint-lavender: var(--tint-lavender);
+  --color-ink-lavender: var(--ink-lavender);
+  --color-tint-sky: var(--tint-sky);
+  --color-ink-sky: var(--ink-sky);
+  --color-tint-peach: var(--tint-peach);
+  --color-ink-peach: var(--ink-peach);
+  --color-tint-mint: var(--tint-mint);
+  --color-ink-mint: var(--ink-mint);
+  --color-tint-pink: var(--tint-pink);
+  --color-ink-pink: var(--ink-pink);
+  --color-tint-lemon: var(--tint-lemon);
+  --color-ink-lemon: var(--ink-lemon);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -124,6 +146,7 @@
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
@@ -143,19 +166,198 @@
 .theme-icon-dark {
   display: none;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-icon-dark {
-    display: block;
-  }
-  :root:not([data-theme="light"]) .theme-icon-light {
-    display: none;
-  }
-}
 :root[data-theme="dark"] .theme-icon-dark {
   display: block;
 }
 :root[data-theme="dark"] .theme-icon-light {
   display: none;
+}
+
+/* Soft pastel glow behind the home hero and the contact band. */
+.pastel-wash {
+  background:
+    radial-gradient(60% 80% at 0% 0%, var(--tint-lavender) 0%, transparent 70%),
+    radial-gradient(50% 70% at 100% 10%, var(--tint-pink) 0%, transparent 70%),
+    radial-gradient(60% 80% at 80% 100%, var(--tint-peach) 0%, transparent 70%),
+    radial-gradient(50% 60% at 10% 100%, var(--tint-sky) 0%, transparent 70%),
+    var(--surface);
+}
+
+/* Gradient ring around the portrait; it slowly turns when motion is allowed. */
+.photo-ring {
+  background: conic-gradient(from 0deg, #6b4ef0, #e85d9a, #f6a04d, #2bb5a7, #4f8ff7, #6b4ef0);
+}
+
+/* ---------- Motion ----------
+ * Entrance animations run in CSS from the first paint, so nothing waits for scripts.
+ * MotionObserver rewinds the ones that start below the fold and plays them on scroll.
+ * Every animation uses `backwards` fill so finished elements return to their own styles.
+ */
+@property --n {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+@keyframes rise-soft {
+  from {
+    transform: translateY(12px);
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+/* Fixed-width digits only while counting, so the finished number keeps its natural spacing. */
+@keyframes countup {
+  from {
+    --n: 0;
+    min-width: var(--w, 1ch);
+    font-variant-numeric: tabular-nums;
+  }
+  to {
+    min-width: var(--w, 1ch);
+    font-variant-numeric: tabular-nums;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 45%, transparent);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+@keyframes drift {
+  50% {
+    transform: translate3d(var(--dx, 24px), var(--dy, -16px), 0) scale(1.08);
+  }
+}
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* "10M+" counts up from zero: the digits are a CSS counter on a registered integer. */
+.countup {
+  display: inline-block;
+  text-align: right;
+  --n: var(--to);
+  counter-reset: n var(--n);
+}
+.countup::after {
+  content: counter(n);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: rise 0.7s cubic-bezier(0.16, 0.84, 0.3, 1) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+  .reveal-soft {
+    animation: rise-soft 0.7s cubic-bezier(0.16, 0.84, 0.3, 1) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+  .pop {
+    animation: pop 0.65s cubic-bezier(0.16, 0.84, 0.3, 1) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+  .countup {
+    animation: countup 1.4s cubic-bezier(0.16, 0.84, 0.3, 1) backwards;
+    animation-delay: calc(var(--d, 0ms) + 150ms);
+  }
+  .grow-x {
+    transform-origin: left center;
+    animation: grow-x 0.9s cubic-bezier(0.16, 0.84, 0.3, 1) backwards;
+    animation-delay: calc(var(--d, 0ms) + 200ms);
+  }
+  .wipe {
+    animation: wipe 1.1s cubic-bezier(0.65, 0, 0.35, 1) backwards;
+    animation-delay: 250ms;
+  }
+  .spin-slow {
+    animation: spin 14s linear infinite;
+  }
+  .pulse {
+    animation: pulse 2.2s ease-out infinite;
+  }
+  .drift {
+    animation: drift 18s ease-in-out infinite;
+  }
+
+  .lift {
+    transition:
+      transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+  .lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -20px var(--shadow);
+    border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+  }
+  .press {
+    transition:
+      transform 0.15s ease,
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .press:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px -12px var(--shadow);
+  }
+  .press:active {
+    transform: translateY(0) scale(0.97);
+  }
+  .nudge svg {
+    transition: transform 0.2s ease;
+  }
+  .nudge:hover svg {
+    transform: translateX(3px);
+  }
+
+  dialog[open] {
+    animation: menu-in 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  dialog[open] .menu-item {
+    animation: rise 0.45s cubic-bezier(0.16, 0.84, 0.3, 1) backwards;
+    animation-delay: calc(60ms + var(--i, 0) * 45ms);
+  }
+
+  ::view-transition-group(*) {
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
 }
 
 @media print {

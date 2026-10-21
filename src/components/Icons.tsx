@@ -160,6 +160,68 @@ export function CloseIcon(props: IconProps) {
   );
 }
 
+export function BagIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M5.5 8h13l-1.2 12.1a1 1 0 0 1-1 .9H7.7a1 1 0 0 1-1-.9z" />
+      <path d="M9 10V6.5a3 3 0 0 1 6 0V10" />
+    </Stroke>
+  );
+}
+
+export function ActivityIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M3 12h4l3-8 4 16 3-8h4" />
+    </Stroke>
+  );
+}
+
+export function TrophyIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M8 21h8M12 16.5V21M7 4h10v4.5a5 5 0 0 1-10 0z" />
+      <path d="M17 5.5h2.5v1.5A3 3 0 0 1 16.6 10M7 5.5H4.5v1.5A3 3 0 0 0 7.4 10" />
+    </Stroke>
+  );
+}
+
+export function UsersIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <circle cx="9" cy="8" r="3.5" />
+      <path d="M2.5 20a6.5 6.5 0 0 1 13 0" />
+      <path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8" />
+    </Stroke>
+  );
+}
+
+export function RepoIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z" />
+      <path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19M9 7h6" />
+    </Stroke>
+  );
+}
+
+export function CodeIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14" />
+    </Stroke>
+  );
+}
+
+export function ClockIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </Stroke>
+  );
+}
+
 export function GlobeIcon(props: IconProps) {
   return (
     <Stroke {...props}>

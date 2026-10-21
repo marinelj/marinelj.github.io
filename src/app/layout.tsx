@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { SiteFooter } from "@/components/SiteFooter";
+import { MotionObserver } from "@/components/MotionObserver";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/config/site";
 import { mailto, profile } from "@/lib/profile";
@@ -28,10 +29,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f7f4" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d0e0f" },
-  ],
+  themeColor: "#fafaff",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -61,6 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
+        <MotionObserver />
       </body>
     </html>
   );

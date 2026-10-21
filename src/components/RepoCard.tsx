@@ -1,6 +1,7 @@
 import type { ChartColor, RepoView } from "@/lib/github";
 import { formatDate, formatShare } from "@/lib/format";
-import { ArrowUpRightIcon, ForkIcon, GlobeIcon, StarIcon } from "./Icons";
+import { ArrowUpRightIcon, ForkIcon, GlobeIcon, RepoIcon, StarIcon } from "./Icons";
+import { delay, tintAt } from "./ui";
 
 /** Full class names so Tailwind sees them; colors come from the chart tokens. */
 export const swatchClass: Record<ChartColor, string> = {
@@ -14,22 +15,38 @@ function plural(count: number, word: string) {
   return `${count} ${word}${count === 1 ? "" : "s"}`;
 }
 
-export function RepoCard({ repo, className = "" }: { repo: RepoView; className?: string }) {
+export function RepoCard({
+  repo,
+  index = 0,
+  className = "",
+}: {
+  repo: RepoView;
+  /** Position in the grid: staggers the entrance and picks the icon's tint. */
+  index?: number;
+  className?: string;
+}) {
   const mix = repo.segments.map((s) => `${s.name} ${formatShare(s.share)}`).join(", ");
+  const tint = tintAt(index);
   return (
     <article
-      className={`flex min-w-0 flex-col gap-3 rounded-xl border border-line bg-surface p-5 ${className}`}
+      className={`reveal lift flex min-w-0 flex-col gap-3 rounded-2xl border border-line bg-surface p-5 ${className}`}
+      style={{ ...delay(index * 90), viewTransitionName: `repo-${repo.name.replace(/[^\w-]/g, "-")}` }}
     >
+      <div className="flex items-center justify-between gap-3">
+        <span className={`inline-flex size-10 items-center justify-center rounded-xl ${tint.bg} ${tint.ink}`} aria-hidden="true">
+          <RepoIcon size={18} />
+        </span>
+        <span className="shrink-0 font-mono text-xs text-fg-3">
+          <span className="sr-only">Updated </span>
+          <time dateTime={repo.pushedAt}>{formatDate(repo.pushedAt)}</time>
+        </span>
+      </div>
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="min-w-0 text-[17px] font-semibold [overflow-wrap:anywhere]">
           <a href={repo.htmlUrl} className="-my-2.5 inline-block py-2.5 text-fg hover:text-accent">
             {repo.name}
           </a>
         </h3>
-        <span className="shrink-0 font-mono text-xs text-fg-3">
-          <span className="sr-only">Updated </span>
-          <time dateTime={repo.pushedAt}>{formatDate(repo.pushedAt)}</time>
-        </span>
       </div>
 
       {repo.description ? (
@@ -54,7 +71,8 @@ export function RepoCard({ repo, className = "" }: { repo: RepoView; className?:
       <div
         role="img"
         aria-label={`Language mix: ${mix}`}
-        className="mt-auto flex h-1.5 gap-0.5 overflow-hidden rounded-[3px]"
+        className="grow-x mt-auto flex h-1.5 gap-0.5 overflow-hidden rounded-full"
+        style={delay(index * 90)}
       >
         {repo.segments.map((segment) => (
           <span
@@ -85,7 +103,7 @@ export function RepoCard({ repo, className = "" }: { repo: RepoView; className?:
       <div className="flex flex-wrap gap-x-4 border-t border-line pt-1">
         <a
           href={repo.htmlUrl}
-          className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-hover"
+          className="nudge inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-hover"
         >
           View code<span className="sr-only"> for {repo.name} on GitHub</span>
           <ArrowUpRightIcon size={14} />

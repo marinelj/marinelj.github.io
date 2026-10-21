@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { flushSync } from "react-dom";
 import type { ChartColor, RepoView } from "@/lib/github";
 import { RepoCard, swatchClass } from "./RepoCard";
 
@@ -11,10 +12,22 @@ const SORTS: { value: Sort; label: string }[] = [
   { value: "stars", label: "Most stars" },
 ];
 
+/** Animates the grid between states with the View Transitions API where available. */
+function withTransition(update: () => void) {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !document.startViewTransition) {
+    update();
+    return;
+  }
+  document.startViewTransition(() => flushSync(update));
+}
+
 /** Language filter chips, sort control and the repo grid. */
 export function ProjectsBrowser({ repos }: { repos: RepoView[] }) {
-  const [language, setLanguage] = useState<string | null>(null);
-  const [sort, setSort] = useState<Sort>("updated");
+  const [language, setLanguageState] = useState<string | null>(null);
+  const [sort, setSortState] = useState<Sort>("updated");
+  const setLanguage = (next: string | null) => withTransition(() => setLanguageState(next));
+  const setSort = (next: Sort) => withTransition(() => setSortState(next));
 
   const languages = useMemo(() => {
     const counts = new Map<string, { count: number; color: ChartColor }>();
@@ -38,7 +51,9 @@ export function ProjectsBrowser({ repos }: { repos: RepoView[] }) {
   }, [repos, language, sort]);
 
   const chip =
-    "inline-flex h-11 items-center gap-1.5 rounded-full border px-3.5 text-sm font-medium transition-colors";
+    "press inline-flex h-11 items-center gap-1.5 rounded-full border px-4 text-sm font-medium";
+  const chipOn = "border-accent bg-accent text-on-accent";
+  const chipOff = "border-line bg-surface text-fg hover:border-accent/40 hover:bg-accent-soft";
 
   return (
     <section aria-labelledby="repositories" className="flex flex-col gap-4">
@@ -52,7 +67,7 @@ export function ProjectsBrowser({ repos }: { repos: RepoView[] }) {
             aria-pressed={language === null}
             onClick={() => setLanguage(null)}
             className={`${chip} ${
-              language === null ? "border-fg bg-fg text-bg" : "border-line bg-surface text-fg hover:bg-surface-2"
+              language === null ? chipOn : chipOff
             }`}
           >
             All
@@ -67,7 +82,7 @@ export function ProjectsBrowser({ repos }: { repos: RepoView[] }) {
                 aria-pressed={pressed}
                 onClick={() => setLanguage(pressed ? null : entry.name)}
                 className={`${chip} ${
-                  pressed ? "border-fg bg-fg text-bg" : "border-line bg-surface text-fg hover:bg-surface-2"
+                  pressed ? chipOn : chipOff
                 }`}
               >
                 <span className={`size-2 rounded-full ${swatchClass[entry.color]}`} aria-hidden="true" />
@@ -83,7 +98,7 @@ export function ProjectsBrowser({ repos }: { repos: RepoView[] }) {
           <span className="hidden text-[13px] text-fg-3 sm:inline" aria-hidden="true">
             Sort by
           </span>
-          <div className="grid w-full grid-cols-2 gap-1 rounded-xl bg-surface-2 p-1 sm:inline-flex sm:w-auto">
+          <div className="grid w-full grid-cols-2 gap-1 rounded-2xl bg-surface-2 p-1 sm:inline-flex sm:w-auto">
             {SORTS.map((option) => (
               <label key={option.value} className="relative">
                 <input
@@ -94,7 +109,7 @@ export function ProjectsBrowser({ repos }: { repos: RepoView[] }) {
                   onChange={() => setSort(option.value)}
                   className="peer sr-only"
                 />
-                <span className="flex h-11 cursor-pointer items-center justify-center rounded-[9px] border border-transparent px-3.5 text-sm font-medium text-fg-2 peer-checked:border-line peer-checked:bg-surface peer-checked:font-semibold peer-checked:text-fg peer-focus-visible:outline-2 peer-focus-visible:outline-accent">
+                <span className="flex h-11 cursor-pointer items-center justify-center rounded-xl border border-transparent px-4 text-sm font-medium text-fg-2 transition-colors peer-checked:border-line peer-checked:bg-surface peer-checked:font-semibold peer-checked:text-accent peer-checked:shadow-[0_4px_12px_-8px_var(--shadow)] peer-focus-visible:outline-2 peer-focus-visible:outline-accent">
                   {option.label}
                 </span>
               </label>
@@ -108,8 +123,8 @@ export function ProjectsBrowser({ repos }: { repos: RepoView[] }) {
       </p>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {shown.map((repo) => (
-          <RepoCard key={repo.name} repo={repo} />
+        {shown.map((repo, index) => (
+          <RepoCard key={repo.name} repo={repo} index={index} />
         ))}
       </div>
     </section>

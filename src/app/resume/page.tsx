@@ -41,7 +41,7 @@ export default function ResumePage() {
       <Container className="pb-16 lg:pb-24">
         <article
           aria-labelledby="resume-name"
-          className="flex flex-col gap-6 rounded-xl border border-line bg-surface p-5 sm:p-10 lg:p-12 print:border-0 print:p-0"
+          className="reveal flex flex-col gap-6 rounded-3xl border border-line bg-surface p-5 shadow-[0_30px_60px_-40px_var(--shadow)] sm:p-10 lg:p-12 print:border-0 print:p-0 print:shadow-none"
         >
           <header className="flex flex-col gap-2">
             <h2 id="resume-name" className="text-[28px] leading-tight font-semibold tracking-[-0.02em] sm:text-[34px]">

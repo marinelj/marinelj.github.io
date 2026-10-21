@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
-import { Card, Chip, Container, PageHeader, SectionHeader } from "@/components/ui";
+import { Card, Container, PageHeader, SectionHeader, delay, tintAt } from "@/components/ui";
 import { profile } from "@/lib/profile";
 
 export const metadata: Metadata = {
@@ -36,8 +36,10 @@ export default function AboutPage() {
         <section aria-labelledby="experience" className="flex flex-col gap-6">
           <SectionHeader id="experience" eyebrow="Career" title="Experience" />
           <ExperienceTimeline jobs={profile.experience} detail="full" />
-          <Card className="flex flex-wrap gap-x-6 gap-y-3 p-5 sm:p-6">
-            <span className="shrink-0 basis-[140px] font-mono text-[13px] text-fg-3">Education</span>
+          <Card interactive className="reveal flex flex-wrap gap-x-6 gap-y-3 p-5 sm:p-6">
+            <span className="shrink-0 basis-[140px] self-start rounded-full bg-tint-lemon px-2.5 py-0.5 font-mono text-[13px] text-fg-2 sm:max-w-fit">
+              Education
+            </span>
             <ul className="flex min-w-0 flex-[999_1_300px] flex-col gap-3">
               {profile.education.map((item) => (
                 <li key={item.school} className="flex flex-col gap-0.5">
@@ -54,16 +56,21 @@ export default function AboutPage() {
         <section aria-labelledby="skills" className="flex flex-col gap-6">
           <SectionHeader id="skills" eyebrow="Toolkit" title="Skills" />
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {profile.skills.map((group) => (
-              <li key={group.category}>
-                <Card className="flex h-full flex-col gap-3 p-5">
+            {profile.skills.map((group, index) => (
+              <li key={group.category} className="reveal" style={delay((index % 3) * 90)}>
+                <div className={`lift flex h-full flex-col gap-3 rounded-2xl border border-transparent p-5 ${tintAt(index).bg}`}>
                   <h3 className="text-[15px] font-semibold">{group.category}</h3>
                   <ul className="flex flex-wrap gap-1.5">
                     {group.items.map((item) => (
-                      <Chip key={item}>{item}</Chip>
+                      <li
+                        key={item}
+                        className="inline-flex min-h-[30px] items-center rounded-full bg-surface/80 px-3 py-1 text-[13px] leading-snug text-fg-2"
+                      >
+                        {item}
+                      </li>
                     ))}
                   </ul>
-                </Card>
+                </div>
               </li>
             ))}
           </ul>
@@ -74,7 +81,7 @@ export default function AboutPage() {
         <section aria-labelledby="more" className="flex flex-col gap-6">
           <SectionHeader id="more" eyebrow="Also" title="Languages & recognition" />
           <div className="grid gap-4 lg:grid-cols-2">
-            <Card className="flex flex-col gap-4 p-5 sm:p-6">
+            <Card className="reveal flex flex-col gap-4 p-5 sm:p-6">
               <h3 className="text-[15px] font-semibold">Languages</h3>
               <dl className="flex flex-col">
                 {profile.languages.map((language, index) => (
@@ -93,7 +100,7 @@ export default function AboutPage() {
                 ))}
               </dl>
             </Card>
-            <Card className="flex flex-col gap-4 p-5 sm:p-6">
+            <Card className="reveal flex flex-col gap-4 p-5 sm:p-6">
               <h3 className="text-[15px] font-semibold">Recognition</h3>
               <ul className="flex flex-col gap-3 text-[15px] leading-relaxed">
                 {profile.awards.map((award) => (

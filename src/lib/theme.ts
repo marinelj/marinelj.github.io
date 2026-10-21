@@ -1,37 +1,27 @@
-// Theme preference: "system" follows the OS setting through CSS alone; an explicit
-// "light"/"dark" choice is stored and applied as <html data-theme="…">.
+// Light is the default for every visitor. Dark is an explicit, remembered choice,
+// applied as <html data-theme="dark">.
 import { useSyncExternalStore } from "react";
 import { THEME_STORAGE_KEY as STORAGE_KEY } from "./theme-script";
 
-export type ThemePreference = "system" | "light" | "dark";
-export type ResolvedTheme = "light" | "dark";
-
-const DARK_QUERY = "(prefers-color-scheme: dark)";
+export type Theme = "light" | "dark";
 
 const listeners = new Set<() => void>();
 
-function apply(preference: ThemePreference) {
+function apply(theme: Theme) {
   const root = document.documentElement;
-  if (preference === "system") delete root.dataset.theme;
-  else root.dataset.theme = preference;
+  if (theme === "dark") root.dataset.theme = "dark";
+  else delete root.dataset.theme;
 }
 
-function getPreference(): ThemePreference {
-  const theme = document.documentElement.dataset.theme;
-  return theme === "light" || theme === "dark" ? theme : "system";
+function getTheme(): Theme {
+  return document.documentElement.dataset.theme === "dark" ? "dark" : "light";
 }
 
-function getResolvedTheme(): ResolvedTheme {
-  const preference = getPreference();
-  if (preference !== "system") return preference;
-  return window.matchMedia(DARK_QUERY).matches ? "dark" : "light";
-}
-
-export function setThemePreference(preference: ThemePreference) {
-  apply(preference);
+export function setTheme(theme: Theme) {
+  apply(theme);
   try {
-    if (preference === "system") localStorage.removeItem(STORAGE_KEY);
-    else localStorage.setItem(STORAGE_KEY, preference);
+    if (theme === "dark") localStorage.setItem(STORAGE_KEY, "dark");
+    else localStorage.removeItem(STORAGE_KEY);
   } catch {
     // Storage can be unavailable (private mode); the choice still applies to this page.
   }
@@ -39,27 +29,20 @@ export function setThemePreference(preference: ThemePreference) {
 }
 
 function subscribe(listener: () => void) {
-  const media = window.matchMedia(DARK_QUERY);
   // Keep tabs in sync when the choice changes in another one.
   const onStorage = (event: StorageEvent) => {
     if (event.key !== STORAGE_KEY) return;
-    apply(event.newValue === "light" || event.newValue === "dark" ? event.newValue : "system");
+    apply(event.newValue === "dark" ? "dark" : "light");
     listener();
   };
   listeners.add(listener);
-  media.addEventListener("change", listener);
   window.addEventListener("storage", onStorage);
   return () => {
     listeners.delete(listener);
-    media.removeEventListener("change", listener);
     window.removeEventListener("storage", onStorage);
   };
 }
 
-export function useThemePreference(): ThemePreference {
-  return useSyncExternalStore(subscribe, getPreference, () => "system");
-}
-
-export function useResolvedTheme(): ResolvedTheme {
-  return useSyncExternalStore(subscribe, getResolvedTheme, () => "light");
+export function useTheme(): Theme {
+  return useSyncExternalStore(subscribe, getTheme, () => "light");
 }

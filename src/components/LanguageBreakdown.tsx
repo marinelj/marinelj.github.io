@@ -9,7 +9,7 @@ export function LanguageBreakdown({ slices }: { slices: LanguageSlice[] }) {
 
   return (
     <div className="flex flex-col gap-5">
-      <div role="img" aria-label={`Language share by bytes: ${summary}`}>
+      <div role="img" aria-label={`Language share by bytes: ${summary}`} className="wipe">
         <LanguageBar slices={slices} />
       </div>
 

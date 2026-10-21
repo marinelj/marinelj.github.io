@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MailIcon } from "@/components/Icons";
-import { Container, PageHeader } from "@/components/ui";
+import { Container, PageHeader, delay, tintAt } from "@/components/ui";
 import { mailto, profile } from "@/lib/profile";
 
 export const metadata: Metadata = {
@@ -16,22 +16,26 @@ function ContactCard({
   icon,
   title,
   detail,
+  index,
 }: {
   href: string;
   icon: ReactNode;
   title: string;
   detail: string;
+  index: number;
 }) {
+  const tint = tintAt(index);
   return (
     <a
       href={href}
-      className="group flex h-full min-h-[148px] flex-col justify-between gap-6 rounded-xl border border-line bg-surface p-5 transition-colors hover:border-fg-3 sm:p-6"
+      className={`reveal lift group flex h-full min-h-[148px] flex-col justify-between gap-6 rounded-2xl border border-transparent p-5 sm:p-6 ${tint.bg}`}
+      style={delay(index * 90)}
     >
       <span className="flex items-center justify-between">
-        <span className="inline-flex size-11 items-center justify-center rounded-full bg-surface-2 text-fg">
+        <span className={`inline-flex size-11 items-center justify-center rounded-full bg-surface ${tint.ink}`}>
           {icon}
         </span>
-        <ArrowUpRightIcon className="text-fg-3 transition-colors group-hover:text-accent" />
+        <ArrowUpRightIcon className="text-fg-3 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />
       </span>
       <span className="flex flex-col gap-1">
         <span className="text-lg font-semibold">{title}</span>
@@ -56,10 +60,11 @@ export default function ContactPage() {
       <Container className="pb-16 lg:pb-24">
         <ul className="grid gap-4 md:grid-cols-3">
           <li>
-            <ContactCard href={mailto} icon={<MailIcon size={20} />} title="Email" detail="Send me an email" />
+            <ContactCard index={0} href={mailto} icon={<MailIcon size={20} />} title="Email" detail="Send me an email" />
           </li>
           <li>
             <ContactCard
+              index={1}
               href={profile.contact.linkedin}
               icon={<LinkedInIcon size={20} />}
               title="LinkedIn"
@@ -68,6 +73,7 @@ export default function ContactPage() {
           </li>
           <li>
             <ContactCard
+              index={2}
               href={profile.contact.github}
               icon={<GitHubIcon size={20} />}
               title="GitHub"

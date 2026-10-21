@@ -11,10 +11,10 @@
   "intro": "Data engineer with 10+ years building large-scale ETL/ELT pipelines and data platforms. At Alibaba I own the data infrastructure behind Taobao Flash Sale — 10M+ orders and tens of billions of events a day — from high-throughput ETL to the data-quality monitoring other teams rely on.",
   "bio": "I'm a data engineer with 10+ years building large-scale ETL/ELT pipelines, data platforms, and the analytics and ML infrastructure that sits downstream of them. At Alibaba I own the backend data pipelines for Taobao Flash Sale, an instant-commerce product processing 10M+ orders a day: high-throughput distributed ETL that turns tens of billions of raw events into analytics-ready tables, plus the automated data-quality and drift monitoring other teams depend on. I move comfortably between core pipeline engineering and the analytics layer built on top of it (metric design, statistical anomaly detection, experimentation infrastructure, and production ML integration), and I've led and mentored engineering teams of 5–17.",
   "metrics": [
-    { "value": "10M+", "label": "orders/day on the platform whose data infrastructure I own", "source": "Taobao Flash Sale, Alibaba" },
-    { "value": "10B+", "label": "raw events/day parsed into analytics-ready tables", "source": "Alibaba" },
-    { "value": "502K", "label": "orders in 24 h with zero downtime — a single-warehouse record", "source": "JD.com, Double 11 2015" },
-    { "value": "17", "label": "engineers led and mentored on one team", "source": "JD.com" }
+    { "value": "10M+", "icon": "orders", "label": "orders/day on the platform whose data infrastructure I own", "source": "Taobao Flash Sale, Alibaba" },
+    { "value": "10B+", "icon": "events", "label": "raw events/day parsed into analytics-ready tables", "source": "Alibaba" },
+    { "value": "502K", "icon": "record", "label": "orders in 24 h with zero downtime — a single-warehouse record", "source": "JD.com, Double 11 2015" },
+    { "value": "17", "icon": "team", "label": "engineers led and mentored on one team", "source": "JD.com" }
   ],
   "contact": {
     "email": "iammarine30@gmail.com",

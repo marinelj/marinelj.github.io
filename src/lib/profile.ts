@@ -32,7 +32,8 @@ export type Profile = {
   status: string;
   intro: string;
   bio: string;
-  metrics: { value: string; label: string; source: string }[];
+  /** `icon` picks the tile's icon: "orders", "events", "record" or "team". */
+  metrics: { value: string; icon: string; label: string; source: string }[];
   contact: { email: string; github: string; githubUsername: string; linkedin: string };
   experience: Job[];
   education: { school: string; degree: string }[];
