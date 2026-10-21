@@ -49,17 +49,20 @@ function Portrait({ size, src, className = "" }: { size: number; src: string; cl
   );
 }
 
-/** Blurred pastel blobs drifting behind the hero. Decorative only. */
+/**
+ * Blurred pastel blobs drifting behind the hero. Decorative only. They sit in a
+ * fixed-size box anchored to the top, so text reflowing as fonts load can't move them.
+ */
 function HeroBlobs() {
   const blobs = [
-    { className: "left-[-8%] top-[-30%] size-[420px] bg-tint-lavender", dx: "40px", dy: "30px" },
-    { className: "right-[-6%] top-[-20%] size-[360px] bg-tint-pink", dx: "-36px", dy: "24px" },
-    { className: "right-[18%] bottom-[-35%] size-[380px] bg-tint-peach", dx: "-24px", dy: "-30px" },
-    { className: "left-[22%] bottom-[-40%] size-[320px] bg-tint-sky", dx: "30px", dy: "-20px" },
+    { className: "left-[-8%] top-[-140px] size-[420px] bg-tint-lavender", dx: "40px", dy: "30px" },
+    { className: "right-[-6%] top-[-100px] size-[360px] bg-tint-pink", dx: "-36px", dy: "24px" },
+    { className: "right-[18%] top-[420px] size-[380px] bg-tint-peach", dx: "-24px", dy: "-30px" },
+    { className: "left-[22%] top-[480px] size-[320px] bg-tint-sky", dx: "30px", dy: "-20px" },
   ];
   return (
     <div
-      className="pointer-events-none absolute inset-0 overflow-hidden [mask-image:linear-gradient(to_bottom,black_55%,transparent)]"
+      className="pointer-events-none absolute inset-x-0 top-0 h-[860px] overflow-hidden [mask-image:linear-gradient(to_bottom,black_55%,transparent)]"
       aria-hidden="true"
     >
       {blobs.map((blob) => (
