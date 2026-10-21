@@ -1,0 +1,163 @@
+{
+  "name": "Jia Li",
+  "aka": "Marine Lee",
+  "nativeName": "李嘉",
+  "headline": "Senior Data Engineer",
+  "focus": ["ETL / ELT & data pipelines", "Data platforms", "Analytics & ML infrastructure"],
+  "location": "Beijing, China",
+  "availability": "Open to relocation",
+  "photo": { "src": "/images/jia-li.jpg", "alt": "Portrait of Jia Li", "width": 480, "height": 480 },
+  "status": "Open to senior data engineering roles",
+  "intro": "Data engineer with 10+ years building large-scale ETL/ELT pipelines and data platforms. At Alibaba I own the data infrastructure behind Taobao Flash Sale — 10M+ orders and tens of billions of events a day — from high-throughput ETL to the data-quality monitoring other teams rely on.",
+  "bio": "I'm a data engineer with 10+ years building large-scale ETL/ELT pipelines, data platforms, and the analytics and ML infrastructure that sits downstream of them. At Alibaba I own the backend data pipelines for Taobao Flash Sale, an instant-commerce product processing 10M+ orders a day: high-throughput distributed ETL that turns tens of billions of raw events into analytics-ready tables, plus the automated data-quality and drift monitoring other teams depend on. I move comfortably between core pipeline engineering and the analytics layer built on top of it (metric design, statistical anomaly detection, experimentation infrastructure, and production ML integration), and I've led and mentored engineering teams of 5–17.",
+  "metrics": [
+    { "value": "10M+", "label": "orders/day on the platform whose data infrastructure I own", "source": "Taobao Flash Sale, Alibaba" },
+    { "value": "10B+", "label": "raw events/day parsed into analytics-ready tables", "source": "Alibaba" },
+    { "value": "502K", "label": "orders in 24 h with zero downtime — a single-warehouse record", "source": "JD.com, Double 11 2015" },
+    { "value": "17", "label": "engineers led and mentored on one team", "source": "JD.com" }
+  ],
+  "contact": {
+    "email": "iammarine30@gmail.com",
+    "github": "https://github.com/marinelj",
+    "githubUsername": "marinelj",
+    "linkedin": "https://www.linkedin.com/in/jia-li-02a38846/"
+  },
+  "experience": [
+    {
+      "company": "Alibaba Group",
+      "start": "2018-05",
+      "end": null,
+      "location": "Beijing · Hangzhou · Shanghai",
+      "roles": [
+        {
+          "title": "Senior Data R&D Expert",
+          "level": "P8",
+          "team": "Taobao Flash Sale",
+          "start": "2021",
+          "end": null,
+          "summary": "Own backend ETL/ELT and data platform infrastructure for an instant-commerce product processing 10M+ orders/day — pipelines, APIs, and shared data assets consumed by product, BI, algorithm, and data science teams.",
+          "highlights": [
+            { "title": "High-throughput ETL", "text": "Engineered MaxCompute pipelines with custom stateful UDAFs executing in cluster memory, eliminating SQL GROUP BY shuffle overhead on high-volume aggregations — cutting both runtime and compute cost at hyperscale." },
+            { "title": "Data reliability & observability", "text": "Built automated data-quality and drift monitoring covering SLA freshness, completeness, cross-source reconciliation, and rolling-window statistical drift detection, feeding production diagnostic dashboards used by on-call engineers." },
+            { "title": "Automated anomaly diagnosis", "text": "Built an autonomous pipeline (anomaly detection → dynamic multi-dimensional query assembly → statistical analysis → owner routing) that diagnoses business-metric anomalies end to end and routes them to the responsible team with evidence attached." },
+            { "title": "Natural-language data access (NL2SQL)", "text": "Designed a semantic-block NL2SQL framework that lets non-technical users query complex business data in plain language: validated, human-authored SQL blocks hold the tricky logic and the LLM only composes them — substantially more accurate than free-form text-to-SQL." },
+            { "title": "Platform services for downstream teams", "text": "Designed data contracts and APIs consumed by product, BI, and algorithm teams — the platform layer other engineering teams build on." },
+            { "title": "ML infrastructure integration", "text": "Deployed PyTorch multi-modal embedding pipelines into production recommendation infrastructure, handling batch inference at scale." },
+            { "title": "Experimentation", "text": "Analyzed ~1B behavioral records to find where extra merchant impressions stopped converting, then validated an exposure-frequency cap with a controlled A/B test; it became standard platform policy." }
+          ]
+        },
+        {
+          "title": "Data R&D Expert",
+          "level": "P7",
+          "team": "Taobao & Tmall Data Mid-Platform",
+          "start": "2020",
+          "end": "2021",
+          "summary": "Shared data platform serving four independent business units: Tmall Supermarket, Taoxiandao, Alibaba International, and Digital Agriculture.",
+          "highlights": [
+            { "title": "Multi-tenant ETL platform", "text": "Built shared data-ingest infrastructure spanning four business units with different source systems — conformed-dimension modeling instead of a forked pipeline per tenant, serving a 60+ indicator reporting framework." },
+            { "title": "Log-to-table pipeline at scale", "text": "Processed tens of billions of raw behavior-log records into structured, analytics-ready tables via regex/multi-condition parsing and cycle-removal path reconstruction; adopted as shared infrastructure by downstream analytics teams." }
+          ]
+        },
+        {
+          "title": "Data Product Expert",
+          "level": "P7",
+          "team": "Freshippo (Alibaba O2O retail)",
+          "start": "2018",
+          "end": "2020",
+          "summary": "Real-time data products for Alibaba's online-to-offline grocery chain during its rapid expansion.",
+          "highlights": [
+            { "title": "Real-time data ingest", "text": "Formed and led a 5-engineer team building real-time ETL/data-ingest infrastructure and internal APIs supporting network growth from 90 to 300 stores." },
+            { "title": "Inventory forecasting", "text": "Designed a predictive inventory-forecasting pipeline operated by frontline logistics teams, supporting a single campaign that cleared 100M+ units without infrastructure incident." }
+          ]
+        }
+      ]
+    },
+    {
+      "company": "JD.com",
+      "start": "2012-03",
+      "end": "2018-05",
+      "location": "Beijing",
+      "roles": [
+        {
+          "title": "Product R&D Manager",
+          "team": "X Business Unit — Unmanned Supermarket",
+          "start": "2016",
+          "end": "2018",
+          "summary": "Smart-logistics systems for JD's unmanned-retail stores.",
+          "highlights": [
+            { "title": "RFID identification pipelines", "text": "Led and mentored a 6-engineer cross-functional team building RFID-based automated identification pipelines and dynamic replenishment infrastructure for unmanned retail." }
+          ]
+        },
+        {
+          "title": "WMS R&D Manager",
+          "team": "Asia No.1 automated warehouse",
+          "start": "2012",
+          "end": "2016",
+          "summary": "Backend and warehouse-management platform for Asia No.1, then Asia's largest automated fulfillment facility.",
+          "highlights": [
+            { "title": "Record peak, zero downtime", "text": "Led a 17-engineer team building the WMS backend; on-site technical command lead during Double 11 2015 — 502,000 outbound orders in 24 hours with zero downtime, a single-warehouse world record at the time." },
+            { "title": "Scientific Warehouse Layout", "text": "Initiated a data-mining project on product co-occurrence to optimize picking paths; awarded the JD Gold Project First Prize and published as a technical paper." },
+            { "title": "Structured log ETL", "text": "Built regex-based log-parsing ETL converting raw operational log streams into analytics-ready tables, adopted as shared infrastructure by BI and analytics teams." }
+          ]
+        }
+      ]
+    },
+    {
+      "company": "Nokia Siemens Networks · ZTE Soft",
+      "start": "2006",
+      "end": "2012",
+      "location": "Hong Kong · Beijing",
+      "roles": [
+        {
+          "title": "Senior Software Engineer → R&D Team Lead",
+          "team": "Telecom software (OSS/BSS)",
+          "start": "2006",
+          "end": "2012",
+          "summary": "Enterprise telecom systems for China Mobile (Beijing) and PCCW (Hong Kong).",
+          "highlights": [
+            { "title": "OSS/BSS backends", "text": "Built enterprise OSS/BSS backend systems in Java for China Mobile (Beijing) and PCCW (Hong Kong), including five years on-site in Hong Kong in a fully English-speaking environment." },
+            { "title": "Network optimization", "text": "Led development of telecom network-optimization products on-site at China Mobile Beijing, earning multiple client commendation letters." }
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    { "school": "Henan University", "degree": "Bachelor of Economics" }
+  ],
+  "skills": [
+    { "category": "ETL / ELT & pipelines", "items": ["High-throughput ingest", "Batch & streaming ETL/ELT", "Multi-source reconciliation", "Regex / log parsing", "Incremental loads & CDC"] },
+    { "category": "Data platform & warehouse", "items": ["MaxCompute (MPP, Spark-class)", "Hive", "Custom stateful UDAFs", "Dimensional modeling (Kimball, SCD)", "Query & cost optimization", "Partitioning"] },
+    { "category": "Data quality & observability", "items": ["SLA freshness", "Completeness & reconciliation", "Statistical drift detection", "Anomaly detection & root-cause routing", "On-call & incident response"] },
+    { "category": "Analytics & data science", "items": ["Metric / KPI frameworks", "A/B testing", "Funnel analysis (CTR, CVR, AUC)", "Causal inference"] },
+    { "category": "ML & AI integration", "items": ["PyTorch embedding pipelines", "Batch inference", "LLM agent workflows", "NL2SQL"] },
+    { "category": "Languages & tools", "items": ["SQL (expert)", "Python", "Java", "NumPy / Pandas", "PyTorch", "Matplotlib", "JavaScript", "Git"] },
+    { "category": "Leadership", "items": ["Led teams of 5–17", "Mentoring", "Data contracts across teams", "Peak-event technical command"] }
+  ],
+  "languages": [
+    { "name": "Chinese", "level": "Native" },
+    { "name": "English", "level": "Fluent", "note": "Five years working on-site in Hong Kong" },
+    { "name": "Japanese", "level": "Elementary", "note": "Currently studying" }
+  ],
+  "certifications": [],
+  "awards": [
+    { "title": "JD Gold Project Award — First Prize", "org": "JD.com", "year": 2016, "detail": "Scientific Warehouse Layout project" },
+    { "title": "Company-wide commendation from JD Chairman Richard Liu", "org": "JD.com", "year": 2015, "detail": "Double 11 2015 single-warehouse record" },
+    { "title": "Client commendation letters", "org": "Nokia Siemens Networks / China Mobile Beijing", "detail": "Network-optimization delivery" }
+  ],
+  "patents": [
+    { "title": "3 granted invention patents", "detail": "Inventory distribution, promotion output, and product-labelling optimization" }
+  ],
+  "publications": [
+    { "title": "Mining the Value of Product Relationship Chains in Supply Chains", "venue": "JD.com Research", "year": 2015 }
+  ],
+  "memberships": [
+    "Member, ACM",
+    "Member, China Computer Federation (CCF)",
+    "Peer reviewer, Data Research and Artificial Intelligence Research"
+  ],
+  "resume": {
+    "pdf": "/Jia_Li_Resume.pdf",
+    "updated": "2026-09-03"
+  }
+}

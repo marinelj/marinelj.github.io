@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-10-21T08:36:52.036Z",
+  "user": {
+    "login": "marinelj",
+    "htmlUrl": "https://github.com/marinelj",
+    "followers": 0,
+    "publicRepos": 5,
+    "createdAt": "2024-04-29T15:35:36Z"
+  },
+  "repos": [
+    {
+      "name": "hoopformer",
+      "description": "Open-source deep-learning model of NBA lineups, on the court and beyond it",
+      "htmlUrl": "https://github.com/marinelj/hoopformer",
+      "homepage": null,
+      "language": "Python",
+      "stars": 1,
+      "forks": 0,
+      "pushedAt": "2026-10-19T18:10:06Z",
+      "topics": [],
+      "languages": {
+        "Python": 394991,
+        "HTML": 186109,
+        "JavaScript": 183065,
+        "Jupyter Notebook": 96697,
+        "Dockerfile": 684
+      }
+    },
+    {
+      "name": "nba-data-science-studio",
+      "description": "Reproducible NBA data science lessons with code, subtitles, and video assets",
+      "htmlUrl": "https://github.com/marinelj/nba-data-science-studio",
+      "homepage": null,
+      "language": "HTML",
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-09-26T18:23:40Z",
+      "topics": [],
+      "languages": {
+        "HTML": 5169869,
+        "Jupyter Notebook": 122142,
+        "Python": 55673
+      }
+    },
+    {
+      "name": "lesMots",
+      "description": null,
+      "htmlUrl": "https://github.com/marinelj/lesMots",
+      "homepage": null,
+      "language": "Python",
+      "stars": 1,
+      "forks": 0,
+      "pushedAt": "2026-08-03T02:14:52Z",
+      "topics": [],
+      "languages": {
+        "Python": 74887,
+        "HTML": 21969,
+        "JavaScript": 12795,
+        "Dockerfile": 490
+      }
+    }
+  ]
+}
