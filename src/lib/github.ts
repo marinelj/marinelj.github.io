@@ -46,7 +46,10 @@ export type RepoView = Omit<Repo, "languages"> & {
   segments: { name: string; share: number; color: ChartColor }[];
 };
 
-export const github = data as GitHubData;
+// TypeScript infers the JSON's type from its current contents (each repo's language keys
+// differ), so that inferred type can't always be cast straight to GitHubData. The shape is
+// guaranteed by scripts/fetch-github.ts, which writes this file.
+export const github = data as unknown as GitHubData;
 
 /** Only three categorical colors stay distinguishable; everything else is "Other". */
 const MAX_SERIES = 3;
