@@ -91,6 +91,15 @@ export function ArrowRightIcon(props: IconProps) {
   );
 }
 
+export function ArrowDownIcon(props: IconProps) {
+  return (
+    <Stroke strokeWidth={2} {...props}>
+      <path d="M12 5v14" />
+      <path d="m6 13 6 6 6-6" />
+    </Stroke>
+  );
+}
+
 export function ArrowUpRightIcon(props: IconProps) {
   return (
     <Stroke strokeWidth={2} {...props}>

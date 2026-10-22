@@ -1,0 +1,493 @@
+{
+  "title": "My story, so far",
+  "tagline": "Review the old, discover the new.",
+  "intro": [
+    "I’m a coder from Beijing and a parent of two. I’ve spent twenty years building software, and then data systems, at telecom companies, JD.com and Alibaba.",
+    "In my own time I build basketball models, lessons, apps and worlds you can play in. Each one starts from something old and makes something new. That’s the thread running through this story, and an old line from Confucius says it best."
+  ],
+  "motto": {
+    "short": "温故而知新",
+    "full": "温故而知新，可以为师矣。",
+    "translation": "Review the old to discover the new, and you can teach others.",
+    "source": "Confucius, The Analects 2.11",
+    "note": "Every project in this story starts from something old and makes something new. Follow the thread."
+  },
+  "heroPhotos": ["younger-white", "portrait", "family-selfie"],
+  "chapters": [
+    {
+      "id": "roots",
+      "glyph": "根",
+      "label": "Roots",
+      "place": "Beijing",
+      "title": "A coder at heart",
+      "blocks": [
+        { "type": "text", "text": "I grew up in Beijing and studied economics at Henan University. But I’m very much a coder." },
+        { "type": "quote", "text": "I really enjoy the process of generating something new with code." },
+        { "type": "photos", "ids": ["younger-hoodie", "younger-computer", "beijing-summer-palace"] },
+        { "type": "text", "text": "That’s the thread through every chapter here: start from what already exists, and make something that didn’t exist before." }
+      ]
+    },
+    {
+      "id": "languages",
+      "glyph": "语",
+      "label": "Languages",
+      "place": "Hong Kong · Japan",
+      "title": "Five years in English, and now Japanese",
+      "blocks": [
+        { "type": "text", "text": "From 2006 I built telecom software for China Mobile in Beijing and PCCW in Hong Kong, first as an engineer and then as a team lead. I spent five years on-site in Hong Kong, working in English every day." },
+        { "type": "text", "text": "Now I’m learning Japanese. I love Japan. To me, it is a democratic and civilised country." },
+        { "type": "text", "text": "Learning a language is 温故而知新 at its simplest: you review old words until they become new sentences. LesMots, an app I built, works the same way." },
+        { "type": "thread" }
+      ]
+    },
+    {
+      "id": "craft",
+      "glyph": "业",
+      "label": "Craft",
+      "place": "JD.com · Alibaba",
+      "title": "Yesterday’s data, tomorrow’s decisions",
+      "blocks": [
+        { "type": "text", "text": "In 2012 I joined JD.com and led a team of 17 engineers building the software for Asia No.1, then Asia’s largest automated warehouse. On Double 11 in 2015 I led the on-site technical command while it shipped 502,000 orders in 24 hours with zero downtime, a single-warehouse world record at the time." },
+        { "type": "text", "text": "Since 2018 I’ve been at Alibaba: real-time data for Freshippo’s grocery stores, a shared data platform for four business units, and now the data behind Taobao Flash Sale, which handles more than ten million orders a day." },
+        { "type": "stats" },
+        { "type": "text", "text": "The work is 温故而知新 every day. You read what already happened, carefully, and build what comes next on top of it." },
+        { "type": "thread" },
+        { "type": "link", "href": "/resume/", "label": "Read my full resume" }
+      ]
+    },
+    {
+      "id": "court",
+      "glyph": "球",
+      "label": "Court",
+      "place": "Basketball",
+      "title": "Where basketball meets data",
+      "blocks": [
+        { "type": "text", "text": "I play basketball, and my son loves it a lot. I hope he can get the most advanced basketball training there is." },
+        { "type": "photos", "ids": ["court-dribble", "court-jump"] },
+        { "type": "text", "text": "That’s why I sponsor Congdong Sports. And because I’m a coder, I also study the game the way I know best: with data." },
+        { "type": "thread" }
+      ]
+    },
+    {
+      "id": "making",
+      "glyph": "造",
+      "label": "Making",
+      "place": "Side projects",
+      "title": "Generating something new",
+      "blocks": [
+        { "type": "text", "text": "Some things I build simply because I enjoy building them. The first three are private for now, so there’s no code to show yet." },
+        { "type": "thread" }
+      ]
+    },
+    {
+      "id": "photos",
+      "glyph": "影",
+      "label": "Photos",
+      "place": "Family · Travel",
+      "title": "The people and places in my story",
+      "blocks": [
+        { "type": "photos", "ids": ["family-selfie", "family-trio", "family-son"], "layout": "feature" },
+        { "type": "text", "text": "And old towns: Suzhou’s canals and gardens, Chengdu’s lantern-lit lanes. 温故, quite literally." },
+        { "type": "photos", "ids": ["suzhou-canal", "chengdu-lanterns", "suzhou-rooftops"] },
+        { "type": "link", "href": "/photos/", "label": "See all photos" }
+      ]
+    },
+    {
+      "id": "teaching",
+      "glyph": "师",
+      "label": "Teaching",
+      "place": "The rest of the line",
+      "title": "…and you can teach others",
+      "blocks": [
+        { "type": "text", "text": "The line from Confucius ends with teaching: 可以为师矣, “then you can teach others.”" },
+        { "type": "text", "text": "I’ve led and mentored engineering teams of up to 17 people. I make the NBA Data Science Studio lessons so that anyone can learn statistics through questions about the game. And I keep reviewing the old to learn the new, every day." }
+      ]
+    }
+  ],
+  "ending": {
+    "title": "Thank you for reading",
+    "text": "I hope you understand me a little better now. If something here made you want to talk, write to me."
+  },
+  "thread": [
+    {
+      "id": "warehouse-layout",
+      "chapter": "craft",
+      "title": "Scientific Warehouse Layout",
+      "where": "JD.com",
+      "when": "2015",
+      "old": "Which products customers buy together",
+      "next": "Shorter picking paths in the warehouse, a JD Gold Project First Prize and a published paper",
+      "tags": ["work"]
+    },
+    {
+      "id": "anomaly-diagnosis",
+      "chapter": "craft",
+      "title": "Automated anomaly diagnosis",
+      "where": "Taobao Flash Sale, Alibaba",
+      "when": "2021–now",
+      "old": "Tens of billions of past events a day",
+      "next": "Alerts that find the cause of a strange metric and send it to the right team, with the evidence attached",
+      "tags": ["work"]
+    },
+    {
+      "id": "nl2sql",
+      "chapter": "craft",
+      "title": "Plain-language data (NL2SQL)",
+      "where": "Taobao Flash Sale, Alibaba",
+      "when": "2021–now",
+      "old": "SQL that experts already wrote and checked",
+      "next": "Questions anyone can ask in plain language, answered more accurately than free-form AI-written SQL",
+      "tags": ["work"]
+    },
+    {
+      "id": "lesmots",
+      "chapter": "languages",
+      "title": "LesMots · 温故",
+      "where": "Personal",
+      "when": "Jul 2026",
+      "old": "The words you’re about to forget",
+      "next": "A fresh news story every day, rewritten in simple English around exactly those words",
+      "tags": ["live", "open-source"],
+      "links": [
+        { "label": "Open the app", "href": "https://lesmots-936108631310.europe-west1.run.app" },
+        { "label": "GitHub", "href": "https://github.com/marinelj/lesMots" }
+      ]
+    },
+    {
+      "id": "record-linkage",
+      "chapter": "making",
+      "title": "Record linkage",
+      "where": "Personal",
+      "when": "Jul 2026",
+      "old": "Scattered records that describe the same things",
+      "next": "One matched, clean set",
+      "tags": ["private"]
+    },
+    {
+      "id": "nba-studio",
+      "chapter": "court",
+      "title": "NBA Data Science Studio",
+      "where": "Personal",
+      "when": "Sep 2026",
+      "old": "LeBron James’s past games and seasons",
+      "next": "Short, reproducible video lessons that teach statistics and machine learning",
+      "tags": ["open-source"],
+      "links": [{ "label": "GitHub", "href": "https://github.com/marinelj/nba-data-science-studio" }]
+    },
+    {
+      "id": "hoopformer",
+      "chapter": "court",
+      "title": "Hoopformer",
+      "where": "Personal",
+      "when": "Sep 2026",
+      "old": "Ten NBA seasons of play-by-play: about 2.5 million possessions",
+      "next": "A learned vector for every player, and a season simulator built for the 2026–27 season",
+      "detail": "Every claim it makes is graded in public against simple baselines.",
+      "tags": ["open-source"],
+      "links": [{ "label": "GitHub", "href": "https://github.com/marinelj/hoopformer" }]
+    },
+    {
+      "id": "congdong",
+      "chapter": "court",
+      "title": "Congdong Sports · 丛动体育",
+      "where": "Beijing",
+      "when": "Oct 2026",
+      "role": "I sponsor it, and I built its website",
+      "old": "Drills, repeated day after day",
+      "next": "Young players ready for the next level, and a pathway into their next school",
+      "detail": "Training camps at two bases outside Beijing, in Huairou and Miyun, for basketball, football, tennis, badminton and more.",
+      "tags": ["live"],
+      "links": [
+        { "label": "Website", "href": "https://marinelj.github.io/congdong/" },
+        { "label": "GitHub", "href": "https://github.com/marinelj/congdong" }
+      ]
+    },
+    {
+      "id": "finance",
+      "chapter": "making",
+      "title": "Finance",
+      "where": "Personal",
+      "when": "Oct 2026",
+      "old": "Every card, loan and due date, in one list",
+      "next": "The best card to use today, and a step-by-step plan for debt, savings and investing",
+      "detail": "A local-first app for iOS and Android.",
+      "tags": ["private"]
+    },
+    {
+      "id": "reel",
+      "chapter": "making",
+      "title": "REEL · Reality Engine",
+      "where": "Personal",
+      "when": "Oct 2026",
+      "old": "A video clip, or a live camera feed",
+      "next": "A 3D scene you can step into, with objects to play with in first-person mini-games",
+      "detail": "Built in Unity, with local AI models for depth and object recognition.",
+      "tags": ["private"]
+    },
+    {
+      "id": "this-site",
+      "chapter": "making",
+      "title": "This website",
+      "where": "Personal",
+      "when": "Oct 2026",
+      "old": "My resume",
+      "next": "This story",
+      "tags": ["live"]
+    }
+  ],
+  "photos": [
+    {
+      "id": "family-selfie",
+      "group": "family",
+      "sources": [
+        { "src": "/images/story/family-selfie-600.webp", "width": 600 },
+        { "src": "/images/story/family-selfie-800.webp", "width": 800 },
+        { "src": "/images/story/family-selfie-1200.webp", "width": 1200 }
+      ],
+      "width": 1200,
+      "height": 900,
+      "alt": "Jia Li with daughter and son, taking a selfie",
+      "caption": "With my daughter and son"
+    },
+    {
+      "id": "family-trio",
+      "group": "family",
+      "sources": [
+        { "src": "/images/story/family-trio-400.webp", "width": 400 },
+        { "src": "/images/story/family-trio-800.webp", "width": 800 }
+      ],
+      "width": 800,
+      "height": 1200,
+      "alt": "Jia Li, daughter and son together in a selfie",
+      "caption": "The three of us"
+    },
+    {
+      "id": "family-son",
+      "group": "family",
+      "sources": [
+        { "src": "/images/story/family-son-400.webp", "width": 400 },
+        { "src": "/images/story/family-son-800.webp", "width": 800 }
+      ],
+      "width": 800,
+      "height": 1067,
+      "alt": "Jia Li and son in a selfie",
+      "caption": "With my son"
+    },
+    {
+      "id": "younger-white",
+      "group": "younger",
+      "sources": [
+        { "src": "/images/story/younger-white-360.webp", "width": 360 },
+        { "src": "/images/story/younger-white-720.webp", "width": 720 }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "Jia Li when younger, in a white T-shirt",
+      "caption": "Younger me"
+    },
+    {
+      "id": "younger-hoodie",
+      "group": "younger",
+      "sources": [
+        { "src": "/images/story/younger-hoodie-360.webp", "width": 360 },
+        { "src": "/images/story/younger-hoodie-720.webp", "width": 720 }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "Jia Li when younger, in a yellow hoodie among trees",
+      "caption": "Years ago, among the trees"
+    },
+    {
+      "id": "younger-computer",
+      "group": "younger",
+      "sources": [
+        { "src": "/images/story/younger-computer-360.webp", "width": 360 },
+        { "src": "/images/story/younger-computer-641.webp", "width": 641 }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "Jia Li when younger, in a computer room with Eclipse open on a screen",
+      "caption": "In a computer room, years ago"
+    },
+    {
+      "id": "younger-boat",
+      "group": "younger",
+      "sources": [
+        { "src": "/images/story/younger-boat-360.webp", "width": 360 },
+        { "src": "/images/story/younger-boat-720.webp", "width": 720 }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "Jia Li when younger, sitting by the water under a painted roof",
+      "caption": "By the water"
+    },
+    {
+      "id": "younger-hat",
+      "group": "younger",
+      "sources": [
+        { "src": "/images/story/younger-hat-360.webp", "width": 360 },
+        { "src": "/images/story/younger-hat-600.webp", "width": 600 }
+      ],
+      "width": 600,
+      "height": 450,
+      "alt": "Jia Li when younger, in a big striped sun hat by a canal",
+      "caption": "In Suzhou"
+    },
+    {
+      "id": "younger-chengdu",
+      "group": "younger",
+      "sources": [
+        { "src": "/images/story/younger-chengdu-360.webp", "width": 360 },
+        { "src": "/images/story/younger-chengdu-720.webp", "width": 720 }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "Jia Li standing under the stone archway of Jinli in Chengdu",
+      "caption": "At Jinli, Chengdu"
+    },
+    {
+      "id": "court-dribble",
+      "group": "court",
+      "sources": [
+        { "src": "/images/story/court-dribble-360.webp", "width": 360 },
+        { "src": "/images/story/court-dribble-720.webp", "width": 720 }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "A player in a red shirt bringing the ball up an indoor court",
+      "caption": "With the ball"
+    },
+    {
+      "id": "court-jump",
+      "group": "court",
+      "sources": [
+        { "src": "/images/story/court-jump-360.webp", "width": 360 },
+        { "src": "/images/story/court-jump-720.webp", "width": 720 }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "A player in a red shirt going up for a jump shot",
+      "caption": "Jump shot"
+    },
+    {
+      "id": "portrait",
+      "group": "work",
+      "sources": [
+        { "src": "/images/story/jd-store-360.webp", "width": 360 },
+        { "src": "/images/story/jd-store-480.webp", "width": 480 }
+      ],
+      "width": 480,
+      "height": 480,
+      "alt": "Jia Li at JD’s unmanned supermarket",
+      "caption": "At JD’s unmanned supermarket"
+    },
+    {
+      "id": "suzhou-canal",
+      "group": "travel",
+      "sources": [
+        { "src": "/images/story/suzhou-canal-360.webp", "width": 360 },
+        { "src": "/images/story/suzhou-canal-641.webp", "width": 641 }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "A calm canal lined with white houses in Suzhou",
+      "caption": "A canal in Suzhou"
+    },
+    {
+      "id": "chengdu-lanterns",
+      "group": "travel",
+      "sources": [
+        { "src": "/images/story/chengdu-lanterns-360.webp", "width": 360 },
+        { "src": "/images/story/chengdu-lanterns-800.webp", "width": 800 }
+      ],
+      "width": 800,
+      "height": 600,
+      "alt": "A lane hung with red lanterns and café umbrellas in Chengdu",
+      "caption": "Lantern lane, Chengdu"
+    },
+    {
+      "id": "suzhou-rooftops",
+      "group": "travel",
+      "sources": [
+        { "src": "/images/story/suzhou-rooftops-360.webp", "width": 360 },
+        { "src": "/images/story/suzhou-rooftops-641.webp", "width": 641 }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "Grey tiled rooftops and a curved pavilion roof in a Suzhou garden",
+      "caption": "Garden rooftops, Suzhou"
+    },
+    {
+      "id": "beijing-summer-palace",
+      "group": "travel",
+      "sources": [
+        { "src": "/images/story/beijing-summer-palace-360.webp", "width": 360 },
+        { "src": "/images/story/beijing-summer-palace-720.webp", "width": 720 }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "Boats on Kunming Lake beside the Seventeen-Arch Bridge at the Summer Palace",
+      "caption": "The Summer Palace, Beijing"
+    },
+    {
+      "id": "suzhou-garden",
+      "group": "travel",
+      "sources": [
+        { "src": "/images/story/suzhou-garden-360.webp", "width": 360 },
+        { "src": "/images/story/suzhou-garden-641.webp", "width": 641 }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "A white garden wall with a flower-shaped doorway and stone steps in Suzhou",
+      "caption": "A garden doorway, Suzhou"
+    },
+    {
+      "id": "chengdu-loom",
+      "group": "travel",
+      "sources": [
+        { "src": "/images/story/chengdu-loom-360.webp", "width": 360 },
+        { "src": "/images/story/chengdu-loom-720.webp", "width": 720 }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "A large wooden loom strung with white silk threads",
+      "caption": "An old silk loom, Chengdu"
+    },
+    {
+      "id": "suzhou-lake",
+      "group": "travel",
+      "sources": [
+        { "src": "/images/story/suzhou-lake-360.webp", "width": 360 },
+        { "src": "/images/story/suzhou-lake-641.webp", "width": 641 }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "A lake with a pavilion and willow trees in Suzhou",
+      "caption": "Lake and pavilion, Suzhou"
+    },
+    {
+      "id": "suzhou-willows",
+      "group": "travel",
+      "sources": [
+        { "src": "/images/story/suzhou-willows-360.webp", "width": 360 },
+        { "src": "/images/story/suzhou-willows-641.webp", "width": 641 }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "Willow trees over a green canal with a small wooden boat",
+      "caption": "Willows and a boat, Suzhou"
+    },
+    {
+      "id": "suzhou-gateway",
+      "group": "travel",
+      "sources": [
+        { "src": "/images/story/suzhou-gateway-360.webp", "width": 360 },
+        { "src": "/images/story/suzhou-gateway-641.webp", "width": 641 }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "A carved brick gateway on an old house in Suzhou",
+      "caption": "A carved gateway, Suzhou"
+    }
+  ]
+}
