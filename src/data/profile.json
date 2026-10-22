@@ -6,9 +6,7 @@
   "focus": ["ETL / ELT & data pipelines", "Data platforms", "Analytics & ML infrastructure"],
   "location": "Beijing, China",
   "availability": "Open to relocation",
-  "photo": { "src": "/images/jia-li.jpg", "alt": "Portrait of Jia Li", "width": 480, "height": 480 },
   "status": "Open to senior data engineering roles",
-  "intro": "Data engineer with 10+ years building large-scale ETL/ELT pipelines and data platforms. At Alibaba I own the data infrastructure behind Taobao Flash Sale — 10M+ orders and tens of billions of events a day — from high-throughput ETL to the data-quality monitoring other teams rely on.",
   "bio": "I'm a data engineer with 10+ years building large-scale ETL/ELT pipelines, data platforms, and the analytics and ML infrastructure that sits downstream of them. At Alibaba I own the backend data pipelines for Taobao Flash Sale, an instant-commerce product processing 10M+ orders a day: high-throughput distributed ETL that turns tens of billions of raw events into analytics-ready tables, plus the automated data-quality and drift monitoring other teams depend on. I move comfortably between core pipeline engineering and the analytics layer built on top of it (metric design, statistical anomaly detection, experimentation infrastructure, and production ML integration), and I've led and mentored engineering teams of 5–17.",
   "metrics": [
     { "value": "10M+", "icon": "orders", "label": "orders/day on the platform whose data infrastructure I own", "source": "Taobao Flash Sale, Alibaba" },
@@ -125,7 +123,6 @@
   "education": [
     { "school": "Henan University", "degree": "Bachelor of Economics" }
   ],
-  "coreSkills": ["Batch & streaming ETL/ELT", "MaxCompute", "High-throughput ingest", "Dimensional modeling", "Statistical drift detection", "A/B testing", "PyTorch embedding pipelines", "NL2SQL", "SQL (expert)", "Python", "Java"],
   "skills": [
     { "category": "ETL / ELT & pipelines", "items": ["High-throughput ingest", "Batch & streaming ETL/ELT", "Multi-source reconciliation", "Regex / log parsing", "Incremental loads & CDC"] },
     { "category": "Data platform & warehouse", "items": ["MaxCompute (MPP, Spark-class)", "Hive", "Custom stateful UDAFs", "Dimensional modeling (Kimball, SCD)", "Query & cost optimization", "Partitioning"] },

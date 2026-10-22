@@ -1,1 +1,1 @@
-Jia Li, senior data engineer: ETL/ELT pipelines, data platforms, and analytics and ML infrastructure.
+Jia Li (李嘉, Marine Lee): My story, so far. 温故而知新, review the old and discover the new.

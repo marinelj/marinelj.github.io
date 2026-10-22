@@ -2,18 +2,41 @@ import type { Metadata } from "next";
 import { ArrowUpRightIcon, ClockIcon, CodeIcon, GitHubIcon, RepoIcon, StarIcon } from "@/components/Icons";
 import { LanguageBreakdown } from "@/components/LanguageBreakdown";
 import { ProjectsBrowser } from "@/components/ProjectsBrowser";
-import { ButtonLink, Card, Container, PageHeader, StatTile } from "@/components/ui";
+import { ThreadCard } from "@/components/ThreadCard";
+import { ButtonLink, Card, Container, PageHeader, SectionHeader, StatTile } from "@/components/ui";
 import { EXCLUDED_LANGUAGES } from "@/config/github";
 import { formatDate, formatMonthDay, formatMonthYear } from "@/lib/format";
 import { dashboardSummary, github, languageBreakdown, repoViews } from "@/lib/github";
+import { story } from "@/lib/story";
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Public GitHub repositories by Jia Li (marinelj), refreshed daily: language breakdown, stars and recent activity.",
+    "Every project by Jia Li on one thread, from JD's warehouse to Hoopformer: what each one starts from and what it makes. Plus live GitHub stats, refreshed daily.",
   alternates: { canonical: "/projects/" },
   openGraph: { url: "/projects/" },
 };
+
+/** Every project in story order, strung on one line. */
+function Thread() {
+  return (
+    <ol className="relative flex flex-col gap-5 pl-7 sm:gap-6 sm:pl-12">
+      <span
+        className="absolute top-3 bottom-3 left-[9px] w-0.5 rounded-full bg-linear-180 from-chart-1 via-accent-2 to-chart-3 sm:left-[17px]"
+        aria-hidden="true"
+      />
+      {story.thread.map((item) => (
+        <li key={item.id} className="relative">
+          <span
+            className="absolute top-7 -left-7 size-5 rounded-full border-4 border-bg bg-accent sm:-left-12 sm:size-[22px]"
+            aria-hidden="true"
+          />
+          <ThreadCard item={item} showChapter heading="h2" />
+        </li>
+      ))}
+    </ol>
+  );
+}
 
 export default function ProjectsPage() {
   const summary = dashboardSummary();
@@ -48,22 +71,29 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="03 / Projects"
-        title="GitHub work"
-        aside={
-          <span className="inline-flex h-8 items-center gap-2 rounded-full border border-line px-3 font-mono text-xs text-fg-2">
-            <span className="size-[7px] rounded-full bg-accent" aria-hidden="true" />
-            Data refreshed <time dateTime={generatedAt}>{formatDate(generatedAt)}</time>
-          </span>
-        }
-      >
+      <PageHeader eyebrow="The thread" title="Every project, one story">
         <p className="max-w-[60ch] text-base leading-relaxed text-fg-2 sm:text-[17px]">
-          Public repositories, rebuilt daily from the GitHub API. Forks and archived repos are left out.
+          <span lang="zh-CN">温故而知新</span>: each project starts from something old and makes something new.
+          Here they all are, in the order they happened, from JD’s warehouse to the basketball court.
         </p>
       </PageHeader>
 
+      <Container className="pb-16 lg:pb-24">
+        <Thread />
+      </Container>
+
       <Container className="flex flex-col gap-4 pb-16 sm:gap-6 lg:pb-20">
+        <div className="flex flex-col gap-3">
+          <SectionHeader id="github" eyebrow="Live from GitHub" title="The public code" />
+          <p className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[15px] text-fg-2">
+            Public repositories, rebuilt daily from the GitHub API. Forks and archived repos are left out.
+            <span className="inline-flex h-8 items-center gap-2 rounded-full border border-line px-3 font-mono text-xs text-fg-2">
+              <span className="size-[7px] rounded-full bg-accent" aria-hidden="true" />
+              Refreshed <time dateTime={generatedAt}>{formatDate(generatedAt)}</time>
+            </span>
+          </p>
+        </div>
+
         <section aria-label="Summary">
           <ul className="grid grid-cols-2 gap-2.5 sm:gap-4 lg:grid-cols-4">
             {stats.map((stat, index) => (
@@ -91,7 +121,7 @@ export default function ProjectsPage() {
                 <GitHubIcon size={22} />
               </span>
               <div className="flex min-w-0 flex-col gap-0.5">
-                <h2 className="text-[17px] font-semibold">@{user.login}</h2>
+                <h3 className="text-[17px] font-semibold">@{user.login}</h3>
                 <p className="text-[13px] text-fg-3">GitHub profile</p>
               </div>
             </div>

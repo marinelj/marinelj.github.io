@@ -28,17 +28,13 @@ export type Profile = {
   focus: string[];
   location: string;
   availability: string;
-  photo: { src: string; alt: string; width: number; height: number };
   status: string;
-  intro: string;
   bio: string;
   /** `icon` picks the tile's icon: "orders", "events", "record" or "team". */
   metrics: { value: string; icon: string; label: string; source: string }[];
   contact: { email: string; github: string; githubUsername: string; linkedin: string };
   experience: Job[];
   education: { school: string; degree: string }[];
-  /** Short list for the home page; the full set is in `skills`. */
-  coreSkills: string[];
   skills: { category: string; items: string[] }[];
   languages: { name: string; level: string; note?: string }[];
   certifications: string[];

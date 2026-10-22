@@ -24,7 +24,7 @@ export default function ResumePage() {
   return (
     <>
       <PageHeader
-        eyebrow="04 / Resume"
+        eyebrow="For recruiters"
         title="Resume"
         aside={
           <ButtonLink href={profile.resume.pdf} download variant="primary" className="no-print">
@@ -34,7 +34,8 @@ export default function ResumePage() {
         }
       >
         <p className="text-base text-fg-2">
-          Last updated <time dateTime={profile.resume.updated}>{formatDate(profile.resume.updated)}</time>
+          {profile.status}. Last updated{" "}
+          <time dateTime={profile.resume.updated}>{formatDate(profile.resume.updated)}</time>.
         </p>
       </PageHeader>
 

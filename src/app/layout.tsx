@@ -4,11 +4,12 @@ import { MotionObserver } from "@/components/MotionObserver";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/config/site";
 import { mailto, profile } from "@/lib/profile";
+import { story } from "@/lib/story";
 import { themeInitScript } from "@/lib/theme-script";
 import { geistMono, geistSans } from "./fonts";
 import "./globals.css";
 
-const defaultTitle = `${profile.name} — ${profile.headline}`;
+const defaultTitle = `${profile.name} — ${story.title}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable}`}
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <head>

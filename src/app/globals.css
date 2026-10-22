@@ -105,6 +105,8 @@
   --color-chart-other: var(--chart-other);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  /* Chapter glyphs and the motto: the visitor's own Chinese serif, so no font download. */
+  --font-zh: "Songti SC", "STSong", "Noto Serif SC", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", serif;
 }
 
 @layer base {
@@ -139,6 +141,13 @@
   /* The open mobile menu owns the screen; stop the page behind it from scrolling. */
   html:has(dialog[open]) {
     overflow: hidden;
+  }
+
+  /* "Start reading" and the contents glide to their chapter. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -183,9 +192,48 @@
     var(--surface);
 }
 
-/* Gradient ring around the portrait; it slowly turns when motion is allowed. */
-.photo-ring {
-  background: conic-gradient(from 0deg, #6b4ef0, #e85d9a, #f6a04d, #2bb5a7, #4f8ff7, #6b4ef0);
+/* Photos are printed as polaroids, each with its own small tilt (--r). */
+.polaroid {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px 8px 0;
+  box-shadow: 0 18px 40px -24px var(--shadow);
+  rotate: var(--r, 0deg);
+}
+.photo-stack .polaroid {
+  box-shadow: 0 24px 50px -22px var(--shadow);
+}
+
+/* The thread through the chapters: a quiet line, with a colored fill on top. */
+.thread-line {
+  background: var(--line);
+}
+.thread-progress {
+  border-radius: inherit;
+  background: linear-gradient(to bottom, var(--chart-1), var(--accent-2), var(--chart-2), var(--chart-3));
+  transform-origin: top;
+}
+
+/* A name seal (印章) that signs off the story. */
+.seal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  background: var(--accent-2);
+  color: var(--on-accent);
+  font-family: var(--font-zh);
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  writing-mode: vertical-rl;
+  rotate: -6deg;
+  box-shadow:
+    inset 0 0 0 3px color-mix(in srgb, var(--on-accent) 35%, transparent),
+    0 10px 24px -12px var(--accent-2);
 }
 
 /* ---------- Motion ----------
@@ -241,11 +289,6 @@
     font-variant-numeric: tabular-nums;
   }
 }
-@keyframes spin {
-  to {
-    transform: rotate(1turn);
-  }
-}
 @keyframes pulse {
   0% {
     box-shadow: 0 0 0 0 color-mix(in srgb, currentColor 45%, transparent);
@@ -264,6 +307,19 @@
   from {
     opacity: 0;
     transform: translateY(-10px);
+  }
+}
+/* A print dealt onto the table: it slides up straight, then settles at its tilt. */
+@keyframes deal {
+  from {
+    opacity: 0;
+    translate: 0 48px;
+    rotate: 0deg;
+  }
+}
+@keyframes thread-fill {
+  from {
+    transform: scaleY(0);
   }
 }
 
@@ -304,14 +360,57 @@
     animation: wipe 1.1s cubic-bezier(0.65, 0, 0.35, 1) backwards;
     animation-delay: 250ms;
   }
-  .spin-slow {
-    animation: spin 14s linear infinite;
-  }
   .pulse {
     animation: pulse 2.2s ease-out infinite;
   }
   .drift {
     animation: drift 18s ease-in-out infinite;
+  }
+  .deal {
+    animation: deal 0.9s cubic-bezier(0.16, 0.84, 0.3, 1) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+
+  @media (hover: hover) {
+    .photo-stack .polaroid,
+    .tilt {
+      transition:
+        translate 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        rotate 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.3s ease;
+    }
+    .photo-stack:hover .polaroid:nth-child(1) {
+      translate: -22px -4px;
+      rotate: -12deg;
+    }
+    .photo-stack:hover .polaroid:nth-child(2) {
+      translate: 22px -10px;
+      rotate: 11deg;
+    }
+    .photo-stack:hover .polaroid:nth-child(3) {
+      translate: 0 10px;
+      rotate: 0deg;
+    }
+    .tilt:hover {
+      translate: 0 -4px;
+      rotate: 0deg;
+      box-shadow: 0 26px 50px -24px var(--shadow);
+    }
+    .glyph {
+      transition: rotate 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    a:hover > .glyph {
+      rotate: -10deg;
+    }
+  }
+
+  /* Where scroll-driven animations exist, the thread fills in as you read. */
+  @supports (animation-timeline: view()) {
+    .thread-progress {
+      animation: thread-fill linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
   }
 
   .lift {

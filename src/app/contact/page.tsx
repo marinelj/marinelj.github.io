@@ -6,7 +6,7 @@ import { mailto, profile } from "@/lib/profile";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Jia Li, senior data engineer, by email, LinkedIn or GitHub.",
+  description: "Write to Jia Li by email, LinkedIn or GitHub.",
   alternates: { canonical: "/contact/" },
   openGraph: { url: "/contact/" },
 };
@@ -51,9 +51,9 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHeader eyebrow="05 / Contact" title="Get in touch">
+      <PageHeader eyebrow="Contact" title="Write to me">
         <p className="max-w-[60ch] text-base leading-relaxed text-fg-2 sm:text-[17px]">
-          {profile.status}. Based in {profile.location}, and {profile.availability.toLowerCase()}.
+          Thank you for reading my story. Email is the best way to reach me, and I’m on LinkedIn and GitHub too.
         </p>
       </PageHeader>
 

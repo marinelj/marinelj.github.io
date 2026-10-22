@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-const ANIMATED = ".reveal, .reveal-soft, .pop, .countup, .grow-x, .wipe";
+const ANIMATED = ".reveal, .reveal-soft, .pop, .countup, .grow-x, .wipe, .deal";
 
 /**
  * Entrance animations start in CSS at first paint. Ones below the fold would finish
