@@ -43,6 +43,9 @@ jobs:
       - name: Check that excluded repos are not on the site
         run: npm run check:exclusions
 
+      - name: Check language separation
+        run: npm run check:languages
+
       - uses: actions/configure-pages@v6
 
       - uses: actions/upload-pages-artifact@v5

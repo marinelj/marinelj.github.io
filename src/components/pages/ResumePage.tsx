@@ -1,15 +1,7 @@
-import type { Metadata } from "next";
+import { text, type Content } from "@/i18n/types";
 import { DownloadIcon } from "@/components/Icons";
 import { ButtonLink, Container, PageHeader } from "@/components/ui";
 import { formatDate, formatRange } from "@/lib/format";
-import { mailto, profile } from "@/lib/profile";
-
-export const metadata: Metadata = {
-  title: "Resume",
-  description: "Resume of Jia Li, senior data engineer: experience, skills, education and languages, with a PDF download.",
-  alternates: { canonical: "/resume/" },
-  openGraph: { url: "/resume/" },
-};
 
 function ResumeSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -20,22 +12,24 @@ function ResumeSection({ title, children }: { title: string; children: React.Rea
   );
 }
 
-export default function ResumePage() {
+export function ResumePage({ content }: { content: Content }) {
+  const { profile, ui, locale } = content;
+  const mailto = `mailto:${profile.contact.email}`;
   return (
     <>
       <PageHeader
-        eyebrow="For recruiters"
-        title="Resume"
+        eyebrow={ui.forRecruiters}
+        title={ui.nav[3]}
         aside={
           <ButtonLink href={profile.resume.pdf} download variant="primary" className="no-print">
             <DownloadIcon />
-            Download PDF
+            {ui.downloadPdf}
           </ButtonLink>
         }
       >
         <p className="text-base text-fg-2">
-          {profile.status}. Last updated{" "}
-          <time dateTime={profile.resume.updated}>{formatDate(profile.resume.updated)}</time>.
+          {text(ui.resumeUpdated, { status: profile.status })}{" "}
+          <time dateTime={profile.resume.updated}>{formatDate(profile.resume.updated, locale)}</time>{ui.period}
         </p>
       </PageHeader>
 
@@ -56,7 +50,7 @@ export default function ResumePage() {
               <li>{profile.availability}</li>
               <li>
                 <a href={mailto} className="inline-flex min-h-11 min-w-11 items-center text-accent hover:text-accent-hover">
-                  Email
+                  {ui.email}
                 </a>
               </li>
               <li>
@@ -72,18 +66,18 @@ export default function ResumePage() {
             </ul>
           </header>
 
-          <ResumeSection title="Summary">
+          <ResumeSection title={ui.summary}>
             <p className="text-[15px] leading-relaxed text-fg-2">{profile.bio}</p>
           </ResumeSection>
 
-          <ResumeSection title="Experience">
+          <ResumeSection title={ui.experience}>
             <div className="flex flex-col gap-7">
               {profile.experience.map((job) => (
                 <div key={job.company} className="flex flex-col gap-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                     <h4 className="text-lg font-semibold">{job.company}</h4>
                     <span className="font-mono text-[13px] text-fg-3">
-                      {job.location} · {formatRange(job.start, job.end)}
+                      {job.location} · {formatRange(job.start, job.end, locale)}
                     </span>
                   </div>
                   {job.roles.map((role) => (
@@ -93,15 +87,15 @@ export default function ResumePage() {
                           {role.title}
                           {role.level && <span className="font-normal text-fg-3"> · {role.level}</span>}
                         </h5>
-                        <span className="font-mono text-[13px] text-fg-3">{formatRange(role.start, role.end)}</span>
+                        <span className="font-mono text-[13px] text-fg-3">{formatRange(role.start, role.end, locale)}</span>
                       </div>
                       <p className="text-sm text-fg-2">
-                        <span className="font-medium text-fg">{role.team}.</span> {role.summary}
+                        <span className="font-medium text-fg">{role.team}{ui.period}</span> {role.summary}
                       </p>
                       <ul className="flex list-disc flex-col gap-1.5 pl-5 text-sm leading-relaxed text-fg-2 marker:text-fg-3">
                         {role.highlights.map((highlight) => (
                           <li key={highlight.title}>
-                            <span className="font-medium text-fg">{highlight.title}:</span> {highlight.text}
+                            <span className="font-medium text-fg">{highlight.title}{ui.colon}</span> {highlight.text}
                           </li>
                         ))}
                       </ul>
@@ -112,7 +106,7 @@ export default function ResumePage() {
             </div>
           </ResumeSection>
 
-          <ResumeSection title="Skills">
+          <ResumeSection title={ui.skills}>
             <dl className="grid gap-x-6 gap-y-2.5 text-sm sm:grid-cols-[200px_minmax(0,1fr)]">
               {profile.skills.map((group) => (
                 <div key={group.category} className="contents">
@@ -125,7 +119,7 @@ export default function ResumePage() {
 
           <div className="grid gap-6 border-t border-line pt-6 sm:grid-cols-2 sm:gap-10">
             <section className="flex flex-col gap-3">
-              <h3 className="eyebrow text-accent">Education</h3>
+              <h3 className="eyebrow text-accent">{ui.education}</h3>
               {profile.education.map((item) => (
                 <p key={item.school} className="flex flex-col text-sm">
                   <span className="font-medium">{item.school}</span>
@@ -134,7 +128,7 @@ export default function ResumePage() {
               ))}
             </section>
             <section className="flex flex-col gap-3">
-              <h3 className="eyebrow text-accent">Languages</h3>
+              <h3 className="eyebrow text-accent">{ui.languages}</h3>
               <ul className="flex flex-col gap-1 text-sm">
                 {profile.languages.map((language) => (
                   <li key={language.name}>
@@ -149,26 +143,26 @@ export default function ResumePage() {
             </section>
           </div>
 
-          <ResumeSection title="Recognition">
+          <ResumeSection title={ui.recognition}>
             <ul className="flex list-disc flex-col gap-1.5 pl-5 text-sm leading-relaxed text-fg-2 marker:text-fg-3">
               {profile.awards.map((award) => (
                 <li key={award.title}>
                   <span className="font-medium text-fg">{award.title}</span> — {award.org}
-                  {award.year && `, ${award.year}`}. {award.detail}.
+                  {award.year && `${ui.comma}${award.year}`}{ui.period} {award.detail}{ui.period}
                 </li>
               ))}
               {profile.patents.map((patent) => (
                 <li key={patent.title}>
-                  <span className="font-medium text-fg">{patent.title}</span> — {patent.detail}.
+                  <span className="font-medium text-fg">{patent.title}</span> — {patent.detail}{ui.period}
                 </li>
               ))}
               {profile.publications.map((publication) => (
                 <li key={publication.title}>
-                  <span className="font-medium text-fg">{publication.title}</span> — {publication.venue},{" "}
-                  {publication.year}.
+                  <span className="font-medium text-fg">{publication.title}</span> — {publication.venue}{ui.comma}
+                  {publication.year}{ui.period}
                 </li>
               ))}
-              <li>{profile.memberships.join("; ")}.</li>
+              <li>{profile.memberships.join(ui.semicolon)}{ui.period}</li>
             </ul>
           </ResumeSection>
         </article>

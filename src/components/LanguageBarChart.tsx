@@ -28,7 +28,7 @@ function Segment({ x, y, width, height, fill, gap, active }: BarShapeProps & { g
   );
 }
 
-function SliceTooltip({ active, payload, slices }: TooltipContentProps & { slices: LanguageSlice[] }) {
+function SliceTooltip({ active, payload, slices, otherLabel }: TooltipContentProps & { slices: LanguageSlice[]; otherLabel: string }) {
   const slice = active ? slices.find((s) => s.name === payload?.[0]?.dataKey) : undefined;
   if (!slice) return null;
   return (
@@ -36,14 +36,14 @@ function SliceTooltip({ active, payload, slices }: TooltipContentProps & { slice
       <p className="text-sm font-semibold tabular-nums">{formatShare(slice.share)}</p>
       <p className="flex items-center gap-2 text-xs text-fg-2">
         <span className={`h-0.5 w-3 rounded-full ${swatchClass[slice.color]}`} aria-hidden="true" />
-        {slice.members ? `Other (${slice.members.join(", ")})` : slice.name} · {formatBytes(slice.bytes)}
+        {slice.members ? `${otherLabel} (${slice.members.join(", ")})` : slice.name} · {formatBytes(slice.bytes)}
       </p>
     </div>
   );
 }
 
 /** Recharts version of the bar: per-segment hover tooltips on a 100%-stacked bar. */
-export function LanguageBarChart({ slices }: { slices: LanguageSlice[] }) {
+export function LanguageBarChart({ slices, otherLabel }: { slices: LanguageSlice[]; otherLabel: string }) {
   const visible = slices.filter((slice) => slice.share >= MIN_VISIBLE_SHARE);
   const row = Object.fromEntries(visible.map((slice) => [slice.name, slice.share]));
 
@@ -65,7 +65,7 @@ export function LanguageBarChart({ slices }: { slices: LanguageSlice[] }) {
         isAnimationActive={false}
         allowEscapeViewBox={{ x: true, y: true }}
         offset={12}
-        content={(props) => <SliceTooltip {...props} slices={slices} />}
+        content={(props) => <SliceTooltip {...props} slices={slices} otherLabel={otherLabel} />}
       />
       <BarStack radius={4}>
         {visible.map((slice, index) => {
