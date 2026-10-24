@@ -1,13 +1,14 @@
-import { chapterById, story, type ThreadItem, type ThreadTag } from "@/lib/story";
+import { localPath, text, type Content } from "@/i18n/types";
+import { chapterById, type ThreadItem, type ThreadTag } from "@/lib/story";
 import { ChapterIcon } from "./ChapterIcon";
 import { ArrowRightIcon, ArrowUpRightIcon } from "./Icons";
 import { delay, tintAt } from "./ui";
 
-const TAGS: Record<ThreadTag, { label: string; className: string }> = {
-  work: { label: "At work", className: "bg-tint-lemon" },
-  "open-source": { label: "Open source", className: "bg-tint-mint" },
-  live: { label: "Live", className: "bg-tint-sky" },
-  private: { label: "Private", className: "bg-surface-2" },
+const TAGS: Record<ThreadTag, { className: string }> = {
+  work: { className: "bg-tint-lemon" },
+  "open-source": { className: "bg-tint-mint" },
+  live: { className: "bg-tint-sky" },
+  private: { className: "bg-surface-2" },
 };
 
 /**
@@ -16,21 +17,24 @@ const TAGS: Record<ThreadTag, { label: string; className: string }> = {
  */
 export function ThreadCard({
   item,
+  content,
   order = 0,
   showChapter = false,
   heading: Heading = "h3",
 }: {
   item: ThreadItem;
+  content: Content;
   /** Position in its list: staggers the entrance. */
   order?: number;
   showChapter?: boolean;
   heading?: "h2" | "h3";
 }) {
+  const { story, ui, locale } = content;
   // Tint by place in the whole thread, so neighbouring chapters don't repeat colors.
   // Lavender (tint 0) is skipped: it is too close to the "old" side.
   const tint = tintAt(1 + (story.thread.indexOf(item) % 5));
   const chapterIndex = story.chapters.findIndex((c) => c.id === item.chapter);
-  const chapter = chapterById(item.chapter);
+  const chapter = chapterById(item.chapter, story);
 
   return (
     <article
@@ -44,13 +48,13 @@ export function ThreadCard({
             {item.where} · {item.when}
           </p>
         </div>
-        <ul className="flex flex-wrap gap-1.5" aria-label="Status">
+        <ul className="flex flex-wrap gap-1.5" aria-label={ui.status}>
           {item.tags.map((tag) => (
             <li
               key={tag}
               className={`inline-flex min-h-[26px] items-center rounded-full px-2.5 text-xs font-medium text-fg-2 ${TAGS[tag].className}`}
             >
-              {TAGS[tag].label}
+              {ui.tags[tag]}
             </li>
           ))}
         </ul>
@@ -60,7 +64,7 @@ export function ThreadCard({
 
       <div className="grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-stretch">
         <p className="m-0 flex flex-col gap-1.5 rounded-xl border border-dashed border-fg-3/40 bg-bg p-4">
-          <span className="eyebrow text-fg-3">The old</span>
+          <span className="eyebrow text-fg-3">{ui.old}</span>
           <span className="text-[15px] leading-snug text-fg-2">{item.old}</span>
         </p>
         <span
@@ -70,7 +74,7 @@ export function ThreadCard({
           <ArrowRightIcon size={16} className="rotate-90 md:rotate-0" />
         </span>
         <p className={`m-0 flex flex-col gap-1.5 rounded-xl p-4 ${tint.bg}`}>
-          <span className="eyebrow text-fg-2">The new</span>
+          <span className="eyebrow text-fg-2">{ui.new}</span>
           <span className="text-[15px] leading-snug font-medium text-fg">{item.next}</span>
         </p>
       </div>
@@ -82,11 +86,11 @@ export function ThreadCard({
           {showChapter && (
             <li>
               <a
-                href={`/#${chapter.id}`}
+                href={`${localPath("/", locale)}#${chapter.id}`}
                 className="press inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface pr-4 pl-1.5 text-sm font-medium text-fg hover:border-accent/40 hover:bg-accent-soft"
               >
                 <ChapterIcon icon={chapter.icon} index={chapterIndex} size="xs" />
-                Chapter {chapterIndex + 1}: {chapter.label}
+                {text(ui.chapter, { number: chapterIndex + 1 })}{ui.colon} {chapter.label}
               </a>
             </li>
           )}

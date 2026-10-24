@@ -1,31 +1,32 @@
+import { text, type Dictionary } from "@/i18n/types";
 import { formatBytes, formatShare } from "@/lib/format";
 import type { LanguageSlice } from "@/lib/github";
 import { LanguageBar } from "./LanguageBar";
 import { swatchClass } from "./RepoCard";
 
 /** Language share as one 100%-stacked bar, with a table that doubles as legend and data view. */
-export function LanguageBreakdown({ slices }: { slices: LanguageSlice[] }) {
+export function LanguageBreakdown({ slices, ui }: { slices: LanguageSlice[]; ui: Dictionary }) {
   const summary = slices.map((slice) => `${slice.name} ${formatShare(slice.share)}`).join(", ");
 
   return (
     <div className="flex flex-col gap-5">
-      <div role="img" aria-label={`Language share by bytes: ${summary}`} className="wipe">
-        <LanguageBar slices={slices} />
+      <div role="img" aria-label={text(ui.languageShare, { summary })} className="wipe">
+        <LanguageBar slices={slices} otherLabel={ui.other} />
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full min-w-[300px] border-collapse text-sm">
-          <caption className="sr-only">Language share by bytes across showcased repositories</caption>
+          <caption className="sr-only">{ui.languageCaption}</caption>
           <thead>
             <tr className="font-mono text-[11px] tracking-[0.06em] text-fg-3 uppercase">
               <th scope="col" className="pb-2.5 text-left font-medium">
-                Language
+                {ui.languageColumn}
               </th>
               <th scope="col" className="pb-2.5 text-right font-medium">
-                Share
+                {ui.share}
               </th>
               <th scope="col" className="pb-2.5 text-right font-medium">
-                Size
+                {ui.size}
               </th>
             </tr>
           </thead>

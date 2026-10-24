@@ -1,15 +1,7 @@
-import type { Metadata } from "next";
+import { text, type Content } from "@/i18n/types";
 import type { ReactNode } from "react";
 import { ArrowUpRightIcon, GitHubIcon, LinkedInIcon, MailIcon } from "@/components/Icons";
 import { Container, PageHeader, delay, tintAt } from "@/components/ui";
-import { mailto, profile } from "@/lib/profile";
-
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Write to Jia Li by email, LinkedIn or GitHub.",
-  alternates: { canonical: "/contact/" },
-  openGraph: { url: "/contact/" },
-};
 
 function ContactCard({
   href,
@@ -45,22 +37,24 @@ function ContactCard({
   );
 }
 
-export default function ContactPage() {
+export function ContactPage({ content }: { content: Content }) {
+  const { profile, ui, locale } = content;
+  const mailto = `mailto:${profile.contact.email}`;
   const linkedinHandle = new URL(profile.contact.linkedin).pathname.replace(/^\/|\/$/g, "");
-  const languages = profile.languages.map((l) => `${l.name} (${l.level.toLowerCase()})`).join(", ");
+  const languages = profile.languages.map((l) => locale === "en" ? `${l.name} (${l.level.toLowerCase()})` : `${l.name}（${l.level}）`).join(ui.comma);
 
   return (
     <>
-      <PageHeader eyebrow="Contact" title="Write to me">
+      <PageHeader eyebrow={ui.nav[4]} title={ui.contactTitle}>
         <p className="max-w-[60ch] text-base leading-relaxed text-fg-2 sm:text-[17px]">
-          Thank you for reading my story. Email is the best way to reach me, and I’m on LinkedIn and GitHub too.
+          {ui.contactIntro}
         </p>
       </PageHeader>
 
       <Container className="pb-16 lg:pb-24">
         <ul className="grid gap-4 md:grid-cols-3">
           <li>
-            <ContactCard index={0} href={mailto} icon={<MailIcon size={20} />} title="Email" detail="Send me an email" />
+            <ContactCard index={0} href={mailto} icon={<MailIcon size={20} />} title={ui.email} detail={ui.sendEmail} />
           </li>
           <li>
             <ContactCard
@@ -81,7 +75,7 @@ export default function ContactPage() {
             />
           </li>
         </ul>
-        <p className="mt-8 text-sm text-fg-3">Working languages: {languages}.</p>
+        <p className="mt-8 text-sm text-fg-3">{text(ui.workingLanguages, { languages })}</p>
       </Container>
     </>
   );

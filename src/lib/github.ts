@@ -1,7 +1,8 @@
+import type { Locale } from "@/i18n/types";
 // Build-time helpers for the GitHub dashboard. Import only from Server Components so the
 // config (and its exclusion list) never ships to the browser; pass results down as props.
 import data from "@/data/github.json";
-import { EXCLUDED_LANGUAGES, REPO_DESCRIPTIONS } from "@/config/github";
+import { EXCLUDED_LANGUAGES, REPO_DESCRIPTIONS, REPO_DESCRIPTIONS_ZH } from "@/config/github";
 
 export type Repo = {
   name: string;
@@ -57,6 +58,7 @@ const MAX_SERIES = 3;
 const excludedLanguages = new Set(EXCLUDED_LANGUAGES.map((name) => name.toLowerCase()));
 
 const descriptions = new Map(Object.entries(REPO_DESCRIPTIONS).map(([name, text]) => [name.toLowerCase(), text]));
+const descriptionsZh = new Map(Object.entries(REPO_DESCRIPTIONS_ZH).map(([name, text]) => [name.toLowerCase(), text]));
 const CHINESE = /[㐀-鿿]/;
 
 /** The English description to show: the config's, else GitHub's unless it's in Chinese. */
@@ -64,7 +66,7 @@ function englishDescription({ name, description }: Pick<Repo, "name" | "descript
   return descriptions.get(name.toLowerCase()) ?? (description && !CHINESE.test(description) ? description : null);
 }
 
-export function languageBreakdown(repos: Repo[] = github.repos): LanguageSlice[] {
+export function languageBreakdown(repos: Repo[] = github.repos, otherLabel = "Other"): LanguageSlice[] {
   const totals = new Map<string, number>();
   for (const repo of repos) {
     for (const [name, bytes] of Object.entries(repo.languages)) {
@@ -86,7 +88,7 @@ export function languageBreakdown(repos: Repo[] = github.repos): LanguageSlice[]
   if (rest.length > 0) {
     const bytes = rest.reduce((sum, [, b]) => sum + b, 0);
     slices.push({
-      name: "Other",
+      name: otherLabel,
       bytes,
       share: bytes / total,
       color: "chart-other",
@@ -97,7 +99,7 @@ export function languageBreakdown(repos: Repo[] = github.repos): LanguageSlice[]
 }
 
 /** Repos with colors that match the overall breakdown, ready for client components. */
-export function repoViews(repos: Repo[] = github.repos): RepoView[] {
+export function repoViews(repos: Repo[] = github.repos, locale: Locale = "en"): RepoView[] {
   const colors = new Map(
     languageBreakdown(repos)
       .filter((slice) => slice.color !== "chart-other")
@@ -114,8 +116,13 @@ export function repoViews(repos: Repo[] = github.repos): RepoView[] {
       if (colorFor(name) === "chart-other") other += bytes;
       else segments.push({ name, share: bytes / total, color: colorFor(name) });
     }
-    if (other > 0) segments.push({ name: "other", share: other / total, color: "chart-other" });
-    return { ...repo, description: englishDescription(repo), languageColor: colorFor(repo.language), segments };
+    if (other > 0) segments.push({ name: locale === "en" ? "other" : "其他", share: other / total, color: "chart-other" });
+    const description = locale === "en"
+      ? englishDescription(repo)
+      : repo.description && CHINESE.test(repo.description)
+        ? repo.description
+        : descriptionsZh.get(repo.name.toLowerCase()) ?? repo.description;
+    return { ...repo, description, languageColor: colorFor(repo.language), segments };
   });
 }
 

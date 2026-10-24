@@ -1,3 +1,4 @@
+import { text, type Dictionary, type Locale } from "@/i18n/types";
 import type { ChartColor, RepoView } from "@/lib/github";
 import { formatDate, formatShare } from "@/lib/format";
 import { ArrowUpRightIcon, ForkIcon, GlobeIcon, RepoIcon, StarIcon } from "./Icons";
@@ -11,16 +12,16 @@ export const swatchClass: Record<ChartColor, string> = {
   "chart-other": "bg-chart-other",
 };
 
-function plural(count: number, word: string) {
-  return `${count} ${word}${count === 1 ? "" : "s"}`;
-}
-
 export function RepoCard({
   repo,
+  ui,
+  locale,
   index = 0,
   className = "",
 }: {
   repo: RepoView;
+  ui: Dictionary;
+  locale: Locale;
   /** Position in the grid: staggers the entrance and picks the icon's tint. */
   index?: number;
   className?: string;
@@ -37,13 +38,13 @@ export function RepoCard({
           <RepoIcon size={18} />
         </span>
         <span className="shrink-0 font-mono text-xs text-fg-3">
-          <span className="sr-only">Updated </span>
-          <time dateTime={repo.pushedAt}>{formatDate(repo.pushedAt)}</time>
+          <span className="sr-only">{ui.updated} </span>
+          <time dateTime={repo.pushedAt}>{formatDate(repo.pushedAt, locale)}</time>
         </span>
       </div>
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="min-w-0 text-[17px] font-semibold [overflow-wrap:anywhere]">
-          <a href={repo.htmlUrl} className="-my-2.5 inline-block py-2.5 text-fg hover:text-accent">
+          <a href={repo.htmlUrl} className="-my-2.5 inline-block min-h-11 py-2.5 text-fg hover:text-accent">
             {repo.name}
           </a>
         </h3>
@@ -52,11 +53,11 @@ export function RepoCard({
       {repo.description ? (
         <p className="text-sm leading-relaxed text-fg-2">{repo.description}</p>
       ) : (
-        <p className="text-sm leading-relaxed text-fg-3 italic">No description yet.</p>
+        <p className="text-sm leading-relaxed text-fg-3 italic">{ui.noDescription}</p>
       )}
 
       {repo.topics.length > 0 && (
-        <ul className="flex flex-wrap gap-1.5" aria-label="Topics">
+        <ul className="flex flex-wrap gap-1.5" aria-label={ui.topics}>
           {repo.topics.map((topic) => (
             <li
               key={topic}
@@ -70,7 +71,7 @@ export function RepoCard({
 
       <div
         role="img"
-        aria-label={`Language mix: ${mix}`}
+        aria-label={text(ui.languageMix, { mix })}
         className="grow-x mt-auto flex h-1.5 gap-0.5 overflow-hidden rounded-full"
         style={delay(index * 90)}
       >
@@ -92,11 +93,11 @@ export function RepoCard({
         )}
         <span className="inline-flex items-center gap-1.5">
           <StarIcon size={15} />
-          {plural(repo.stars, "star")}
+          {text(repo.stars === 1 ? ui.star : ui.stars, { count: repo.stars })}
         </span>
         <span className="inline-flex items-center gap-1.5">
           <ForkIcon size={15} />
-          {plural(repo.forks, "fork")}
+          {text(repo.forks === 1 ? ui.fork : ui.forks, { count: repo.forks })}
         </span>
       </div>
 
@@ -105,7 +106,7 @@ export function RepoCard({
           href={repo.htmlUrl}
           className="nudge inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-hover"
         >
-          View code<span className="sr-only"> for {repo.name} on GitHub</span>
+          {ui.viewCode}<span className="sr-only">{text(ui.codeFor, { name: repo.name })}</span>
           <ArrowUpRightIcon size={14} />
         </a>
         {repo.homepage && (
@@ -114,7 +115,7 @@ export function RepoCard({
             className="inline-flex min-h-11 items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-hover"
           >
             <GlobeIcon size={15} />
-            Live demo<span className="sr-only"> of {repo.name}</span>
+            {ui.liveDemo}<span className="sr-only">{text(ui.demoOf, { name: repo.name })}</span>
           </a>
         )}
       </div>

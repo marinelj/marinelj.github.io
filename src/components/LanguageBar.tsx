@@ -5,7 +5,7 @@ import type { LanguageSlice } from "@/lib/github";
 import { swatchClass } from "./RepoCard";
 import { BAR_HEIGHT, MIN_VISIBLE_SHARE } from "./languageBarSpec";
 
-type ChartProps = { slices: LanguageSlice[] };
+type ChartProps = { slices: LanguageSlice[]; otherLabel: string };
 
 /** The same bar in plain HTML: rendered at build time and shown until the chart loads. */
 function StaticBar({ slices }: ChartProps) {
@@ -24,7 +24,7 @@ function StaticBar({ slices }: ChartProps) {
  * Loads the interactive Recharts version after the page is up, so the chart library
  * never delays the first paint on slow connections.
  */
-export function LanguageBar({ slices }: ChartProps) {
+export function LanguageBar({ slices, otherLabel }: ChartProps) {
   const [Chart, setChart] = useState<ComponentType<ChartProps> | null>(null);
 
   useEffect(() => {
@@ -37,5 +37,5 @@ export function LanguageBar({ slices }: ChartProps) {
     };
   }, []);
 
-  return Chart ? <Chart slices={slices} /> : <StaticBar slices={slices} />;
+  return Chart ? <Chart slices={slices} otherLabel={otherLabel} /> : <StaticBar slices={slices} otherLabel={otherLabel} />;
 }

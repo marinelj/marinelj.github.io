@@ -68,22 +68,22 @@ export type Story = {
 
 export const story = data as Story;
 
-export function chapterById(id: string) {
-  const chapter = story.chapters.find((c) => c.id === id);
+export function chapterById(id: string, source: Story = story) {
+  const chapter = source.chapters.find((c) => c.id === id);
   if (!chapter) throw new Error(`Unknown chapter "${id}" in story.json`);
   return chapter;
 }
 
-export function threadFor(chapterId: string) {
-  return story.thread.filter((item) => item.chapter === chapterId);
+export function threadFor(chapterId: string, source: Story = story) {
+  return source.thread.filter((item) => item.chapter === chapterId);
 }
 
-export function photoById(id: string) {
-  const photo = story.photos.find((p) => p.id === id);
+export function photoById(id: string, source: Story = story) {
+  const photo = source.photos.find((p) => p.id === id);
   if (!photo) throw new Error(`Unknown photo "${id}" in story.json`);
   return photo;
 }
 
-export function photosIn(group: Photo["group"]) {
-  return story.photos.filter((p) => p.group === group);
+export function photosIn(group: Photo["group"], source: Story = story) {
+  return source.photos.filter((p) => p.group === group);
 }

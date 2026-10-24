@@ -445,3 +445,23 @@
     --surface: #ffffff;
   }
 }
+
+/* Chinese keeps Geist for Latin text, with local system fonts for ideographs. */
+:root:lang(zh-CN) {
+  --font-sans: var(--font-geist-sans), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --font-mono: var(--font-geist-mono), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", monospace;
+}
+:lang(zh-CN) body { line-height: 1.8; }
+:lang(zh-CN) :is(h1, h2, h3, h4, h5, blockquote) { letter-spacing: 0; line-height: 1.4; }
+:lang(zh-CN) :is(p, li) { line-height: 1.8; }
+:lang(zh-CN) .eyebrow { letter-spacing: 0.04em; }
+:lang(zh-CN) :is(i, em, .italic) { font-style: normal; }
+
+/* The Chinese hero's main photo is opaque from its first paint. */
+@keyframes deal-solid { from { translate: 0 48px; rotate: 0deg; } }
+@media (prefers-reduced-motion: no-preference) {
+  :lang(zh-CN) .photo-stack > .polaroid:last-child { animation-name: deal-solid; }
+}
+/* Keep the language table readable without a sideways swipe on narrow screens. */
+:lang(zh-CN) table { min-width: 0; }
+:lang(zh-CN) td { white-space: nowrap; }

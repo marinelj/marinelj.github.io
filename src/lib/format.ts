@@ -1,40 +1,29 @@
-const dateFormat = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  day: "numeric",
-  year: "numeric",
-  timeZone: "UTC",
-});
+import type { Locale } from "@/i18n/types";
 
-const monthYearFormat = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  year: "numeric",
-  timeZone: "UTC",
-});
-
-/** "2026-10-19T18:10:06Z" → "Oct 19, 2026" (UTC, so build and browser agree). */
-export function formatDate(iso: string): string {
-  return dateFormat.format(new Date(iso));
+/** UTC keeps the exported page and browser in agreement. */
+export function formatDate(iso: string, locale: Locale = "en"): string {
+  return new Intl.DateTimeFormat(locale === "en" ? "en-US" : locale, {
+    month: locale === "en" ? "short" : "long", day: "numeric", year: "numeric", timeZone: "UTC",
+  }).format(new Date(iso));
 }
 
-const monthDayFormat = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  day: "numeric",
-  timeZone: "UTC",
-});
-
-/** "2026-10-19T18:10:06Z" → "Oct 19", for tight spots where the year is shown nearby. */
-export function formatMonthDay(iso: string): string {
-  return monthDayFormat.format(new Date(iso));
+export function formatMonthDay(iso: string, locale: Locale = "en"): string {
+  return new Intl.DateTimeFormat(locale === "en" ? "en-US" : locale, {
+    month: locale === "en" ? "short" : "long", day: "numeric", timeZone: "UTC",
+  }).format(new Date(iso));
 }
 
-/** "2024-04-29T15:35:36Z" → "Apr 2024". */
-export function formatMonthYear(iso: string): string {
-  return monthYearFormat.format(new Date(iso));
+export function formatMonthYear(iso: string, locale: Locale = "en"): string {
+  return new Intl.DateTimeFormat(locale === "en" ? "en-US" : locale, {
+    month: locale === "en" ? "short" : "long", year: "numeric", timeZone: "UTC",
+  }).format(new Date(iso));
 }
 
-/** Resume dates are "YYYY" or "YYYY-MM"; `null` means the role is current. */
-export function formatRange(start: string, end: string | null): string {
-  return `${start.slice(0, 4)} — ${end ? end.slice(0, 4) : "now"}`;
+/** Resume dates are "YYYY" or "YYYY-MM"; null means the role is current. */
+export function formatRange(start: string, end: string | null, locale: Locale = "en"): string {
+  return locale === "en"
+    ? `${start.slice(0, 4)} — ${end ? end.slice(0, 4) : "now"}`
+    : `${start.slice(0, 4)} 年 — ${end ? `${end.slice(0, 4)} 年` : "至今"}`;
 }
 
 function toMonths(value: string): number {
@@ -42,7 +31,7 @@ function toMonths(value: string): number {
   return Number(year) * 12 + Number(month) - 1;
 }
 
-/** Whole years between two resume dates, e.g. "8 yrs". Open-ended ranges run to `now`. */
+/** Whole years between two resume dates. Open-ended ranges run to now. */
 export function formatDuration(start: string, end: string | null, now = new Date()): string {
   const endMonths = end ? toMonths(end) : now.getUTCFullYear() * 12 + now.getUTCMonth();
   const months = Math.max(0, endMonths - toMonths(start));
@@ -51,14 +40,13 @@ export function formatDuration(start: string, end: string | null, now = new Date
   return `${years} yr${years === 1 ? "" : "s"}`;
 }
 
-/** SI units, matching how GitHub sizes are usually quoted: 5,377,947 → "5.38 MB". */
+/** SI units, matching GitHub. */
 export function formatBytes(bytes: number): string {
   if (bytes >= 1e6) return `${(bytes / 1e6).toFixed(2)} MB`;
   if (bytes >= 1e3) return `${Math.round(bytes / 1e3)} KB`;
   return `${bytes} B`;
 }
 
-/** 0.5583 → "55.8%". */
 export function formatShare(share: number): string {
   return `${(share * 100).toFixed(1)}%`;
 }

@@ -1,3 +1,4 @@
+import { localPath, text, type Content } from "@/i18n/types";
 import type { CSSProperties, ReactNode } from "react";
 import { ChapterIcon } from "@/components/ChapterIcon";
 import {
@@ -13,8 +14,7 @@ import {
 import { PhotoGrid, PhotoStack } from "@/components/Photo";
 import { ThreadCard } from "@/components/ThreadCard";
 import { ButtonLink, Container, StatTile, TextLink, delay } from "@/components/ui";
-import { mailto, profile } from "@/lib/profile";
-import { photoById, story, threadFor, type Block, type Chapter } from "@/lib/story";
+import { photoById, threadFor, type Block, type Chapter } from "@/lib/story";
 
 const METRIC_ICONS: Record<string, ReactNode> = {
   orders: <BagIcon />,
@@ -51,7 +51,8 @@ function HeroBlobs() {
 }
 
 /** The cover: who I am, and three prints from the story. */
-function Hero() {
+function Hero({ content }: { content: Content }) {
+  const { story, profile, ui, locale } = content;
   return (
     <div className="relative overflow-x-clip">
       <HeroBlobs />
@@ -73,7 +74,7 @@ function Hero() {
               {profile.name}
             </h1>
             <p className="reveal text-lg text-fg-2 sm:text-xl" style={delay(100)}>
-              Also known as {profile.aka}
+              {text(ui.alsoKnown, { name: profile.aka })}
             </p>
           </div>
           <p
@@ -92,21 +93,22 @@ function Hero() {
           </div>
           <div className="reveal grid grid-cols-2 gap-2.5 pt-1 sm:flex sm:flex-wrap" style={delay(260)}>
             <ButtonLink href="#roots" variant="primary" className="col-span-2 text-base">
-              Start reading
+              {ui.startReading}
               <ArrowDownIcon size={18} />
             </ButtonLink>
-            <ButtonLink href="/photos/">Photos</ButtonLink>
-            <ButtonLink href="/projects/">Projects</ButtonLink>
+            <ButtonLink href={localPath("/photos/", locale)}>{ui.nav[2]}</ButtonLink>
+            <ButtonLink href={localPath("/projects/", locale)}>{ui.nav[1]}</ButtonLink>
           </div>
         </section>
-        <PhotoStack photos={story.heroPhotos.map(photoById)} />
+        <PhotoStack photos={story.heroPhotos.map((id) => photoById(id, story))} />
       </Container>
     </div>
   );
 }
 
 /** The line from Confucius that the whole story follows. */
-function Epigraph() {
+function Epigraph({ content }: { content: Content }) {
+  const { story, ui } = content;
   const { motto } = story;
   return (
     <Container className="pb-10 lg:pb-14">
@@ -115,7 +117,7 @@ function Epigraph() {
         className="reveal pastel-wash rounded-3xl border border-line px-5 py-10 text-center sm:px-12 sm:py-14"
       >
         <h2 id="motto" className="eyebrow text-accent">
-          The main plot
+          {ui.mainPlot}
         </h2>
         <figure className="m-0 mt-4">
           <blockquote className="wipe mx-auto max-w-[22ch] text-[30px] leading-[1.15] font-semibold tracking-[-0.025em] sm:text-[44px] lg:text-[54px]">
@@ -129,12 +131,13 @@ function Epigraph() {
   );
 }
 
-function Contents() {
+function Contents({ content }: { content: Content }) {
+  const { story, ui } = content;
   return (
     <Container>
       <nav aria-labelledby="contents" className="flex flex-col gap-4">
         <h2 id="contents" className="reveal eyebrow text-fg-3">
-          Contents
+          {ui.contents}
         </h2>
         <ol className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
           {story.chapters.map((chapter, index) => (
@@ -162,7 +165,8 @@ function Contents() {
   );
 }
 
-function ChapterBlock({ block, chapterId }: { block: Block; chapterId: string }) {
+function ChapterBlock({ block, chapterId, content }: { block: Block; chapterId: string; content: Content }) {
+  const { story, profile, ui } = content;
   switch (block.type) {
     case "text":
       return (
@@ -174,7 +178,7 @@ function ChapterBlock({ block, chapterId }: { block: Block; chapterId: string })
           <blockquote className="text-[22px] leading-snug font-medium tracking-[-0.01em] text-fg sm:text-[28px]">
             “{block.text}”
           </blockquote>
-          <figcaption className="mt-3 font-mono text-xs text-fg-3">In my own words</figcaption>
+          <figcaption className="mt-3 font-mono text-xs text-fg-3">{ui.myWords}</figcaption>
         </figure>
       );
     case "stats":
@@ -196,21 +200,22 @@ function ChapterBlock({ block, chapterId }: { block: Block; chapterId: string })
     case "thread":
       return (
         <ul className="flex flex-col gap-4">
-          {threadFor(chapterId).map((item, index) => (
+          {threadFor(chapterId, story).map((item, index) => (
             <li key={item.id}>
-              <ThreadCard item={item} order={index} />
+              <ThreadCard item={item} order={index} content={content} />
             </li>
           ))}
         </ul>
       );
     case "photos":
-      return <PhotoGrid photos={block.ids.map(photoById)} layout={block.layout} />;
+      return <PhotoGrid photos={block.ids.map((id) => photoById(id, story))} layout={block.layout} />;
     case "link":
       return <TextLink href={block.href}>{block.label}</TextLink>;
   }
 }
 
-function ChapterSection({ chapter, index }: { chapter: Chapter; index: number }) {
+function ChapterSection({ chapter, index, content }: { chapter: Chapter; index: number; content: Content }) {
+  const { ui } = content;
   const titleId = `${chapter.id}-title`;
   return (
     <section
@@ -230,7 +235,7 @@ function ChapterSection({ chapter, index }: { chapter: Chapter; index: number })
             <ChapterIcon icon={chapter.icon} index={index} className="lg:hidden" />
             <p className="eyebrow flex flex-wrap gap-x-2 text-accent">
               <span className="whitespace-nowrap">
-                Chapter {index + 1} · {chapter.label}
+                {text(ui.chapter, { number: index + 1 })} · {chapter.label}
               </span>
               <span className="whitespace-nowrap text-fg-3">— {chapter.place}</span>
             </p>
@@ -243,14 +248,15 @@ function ChapterSection({ chapter, index }: { chapter: Chapter; index: number })
           </h2>
         </header>
         {chapter.blocks.map((block, blockIndex) => (
-          <ChapterBlock key={blockIndex} block={block} chapterId={chapter.id} />
+          <ChapterBlock key={blockIndex} block={block} chapterId={chapter.id} content={content} />
         ))}
       </div>
     </section>
   );
 }
 
-function Chapters() {
+function Chapters({ content }: { content: Content }) {
+  const { story } = content;
   return (
     <Container className="relative">
       {/* The thread: one line through every chapter. It fills in as you scroll, where supported. */}
@@ -261,13 +267,14 @@ function Chapters() {
         <span className="thread-progress absolute inset-0" />
       </span>
       {story.chapters.map((chapter, index) => (
-        <ChapterSection key={chapter.id} chapter={chapter} index={index} />
+        <ChapterSection key={chapter.id} chapter={chapter} index={index} content={content} />
       ))}
     </Container>
   );
 }
 
-function Ending() {
+function Ending({ content }: { content: Content }) {
+  const { story, profile, ui } = content;
   return (
     <Container className="pb-16 lg:pb-24">
       <section
@@ -286,9 +293,9 @@ function Ending() {
         </h2>
         <p className="max-w-[46ch] text-base leading-relaxed text-fg-2 sm:text-lg">{story.ending.text}</p>
         <div className="grid w-full grid-cols-2 gap-2.5 pt-1 sm:flex sm:w-auto sm:flex-wrap sm:justify-center">
-          <ButtonLink href={mailto} variant="primary" className="col-span-2 text-base">
+          <ButtonLink href={`mailto:${profile.contact.email}`} variant="primary" className="col-span-2 text-base">
             <MailIcon />
-            Email me
+            {ui.emailMe}
           </ButtonLink>
           <ButtonLink href={profile.contact.linkedin}>
             <LinkedInIcon size={16} />
@@ -304,14 +311,14 @@ function Ending() {
   );
 }
 
-export default function Home() {
+export function StoryPage({ content }: { content: Content }) {
   return (
     <>
-      <Hero />
-      <Epigraph />
-      <Contents />
-      <Chapters />
-      <Ending />
+      <Hero content={content} />
+      <Epigraph content={content} />
+      <Contents content={content} />
+      <Chapters content={content} />
+      <Ending content={content} />
     </>
   );
 }

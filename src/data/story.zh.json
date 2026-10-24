@@ -1,0 +1,760 @@
+{
+  "title": "我的故事，写到这里",
+  "tagline": "温故而知新。",
+  "intro": [
+    "我在北京长大，是个写代码的人，也是两个孩子的家长。二十年来，我先在通信公司做软件，后来在京东和阿里巴巴做数据系统。",
+    "工作之外，我做篮球模型、课程、应用，也做可以走进去玩的世界。每件事都从已有的东西出发，做出一点新的东西。这是贯穿我这些经历的一条线，孔子的一句话把它说得最好。"
+  ],
+  "motto": {
+    "quote": "温故而知新，可以为师矣。",
+    "source": "《论语·为政》",
+    "note": "这里的每个项目，都有它从哪里出发、又做出了什么。沿着这条线，往下读吧。"
+  },
+  "heroPhotos": [
+    "younger-white",
+    "portrait",
+    "family-selfie"
+  ],
+  "chapters": [
+    {
+      "id": "roots",
+      "icon": "sprout",
+      "label": "来处",
+      "place": "北京",
+      "title": "骨子里是个写代码的人",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "我在北京长大，在河南大学学的是经济学。不过，骨子里我还是个写代码的人。"
+        },
+        {
+          "type": "quote",
+          "text": "我很享受用代码创造新东西的过程。"
+        },
+        {
+          "type": "photos",
+          "ids": [
+            "younger-hoodie",
+            "younger-computer",
+            "beijing-summer-palace"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "后面的每一章，其实都在做同一件事：从已有的东西出发，做出以前没有的东西。"
+        }
+      ]
+    },
+    {
+      "id": "languages",
+      "icon": "chat",
+      "label": "语言",
+      "place": "香港 · 日本",
+      "title": "用英语工作五年，现在学日语",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "从 2006 年起，我先后为北京的中国移动和香港的电讯盈科做通信软件，从工程师做到团队负责人。我在香港驻场五年，每天用英语工作。"
+        },
+        {
+          "type": "text",
+          "text": "现在我在学日语。我爱日本。在我看来，日本是一个民主、文明的国家。"
+        },
+        {
+          "type": "text",
+          "text": "学语言，是温故知新最直观的例子：旧单词反复复习，就能组成新句子。我做的 LesMots，也是这个思路。"
+        },
+        {
+          "type": "thread"
+        }
+      ]
+    },
+    {
+      "id": "craft",
+      "icon": "database",
+      "label": "手艺",
+      "place": "京东 · 阿里巴巴",
+      "title": "昨天的数据，明天的决策",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "2012 年，我加入京东，带着 17 名工程师为当时亚洲最大的自动化仓库“亚洲一号”开发软件。2015 年双十一，我负责现场技术指挥，仓库在 24 小时内发出 50.2 万单，全程零停机，创下当时的单仓世界纪录。"
+        },
+        {
+          "type": "text",
+          "text": "2018 年起，我在阿里巴巴工作：先做盒马门店的实时数据，再做服务四个业务单元的共享数据平台，现在负责淘宝闪购背后的数据系统。这个平台每天处理超过 1000 万笔订单。"
+        },
+        {
+          "type": "stats"
+        },
+        {
+          "type": "text",
+          "text": "这份工作，每天都在温故知新。仔细读懂已经发生的事，再在这个基础上，搭出下一步。"
+        },
+        {
+          "type": "thread"
+        },
+        {
+          "type": "link",
+          "href": "/zh/resume/",
+          "label": "阅读完整简历"
+        }
+      ]
+    },
+    {
+      "id": "court",
+      "icon": "basketball",
+      "label": "球场",
+      "place": "篮球",
+      "title": "篮球与数据相遇的地方",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "我打篮球，儿子也特别喜欢。我希望儿子能接受最先进的篮球训练。"
+        },
+        {
+          "type": "photos",
+          "ids": [
+            "court-dribble",
+            "court-jump"
+          ]
+        },
+        {
+          "type": "text",
+          "text": "所以，我赞助了丛动体育。作为一个写代码的人，我也用自己熟悉的方式研究篮球：用数据。"
+        },
+        {
+          "type": "thread"
+        }
+      ]
+    },
+    {
+      "id": "making",
+      "icon": "sparkles",
+      "label": "动手做",
+      "place": "业余项目",
+      "title": "做出一点新的东西",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "有些东西，做它只是因为喜欢做。这里的前三个项目目前还未公开，暂时没有代码可以展示。"
+        },
+        {
+          "type": "thread"
+        }
+      ]
+    },
+    {
+      "id": "photos",
+      "icon": "camera",
+      "label": "照片",
+      "place": "家人 · 旅行",
+      "title": "故事里的人与地方",
+      "blocks": [
+        {
+          "type": "photos",
+          "ids": [
+            "family-selfie",
+            "family-trio",
+            "family-son"
+          ],
+          "layout": "feature"
+        },
+        {
+          "type": "text",
+          "text": "还有老城：苏州的水巷与园林、成都挂着灯笼的小巷。这一次，“故”就是那些古老的地方。"
+        },
+        {
+          "type": "photos",
+          "ids": [
+            "suzhou-canal",
+            "chengdu-lanterns",
+            "suzhou-rooftops"
+          ]
+        },
+        {
+          "type": "link",
+          "href": "/zh/photos/",
+          "label": "查看全部照片"
+        }
+      ]
+    },
+    {
+      "id": "teaching",
+      "icon": "cap",
+      "label": "分享",
+      "place": "这句话的后半句",
+      "title": "……可以为师矣",
+      "blocks": [
+        {
+          "type": "text",
+          "text": "孔子的这句话，最后落在了分享与传授上：“可以为师矣。”"
+        },
+        {
+          "type": "text",
+          "text": "我带过、也培养过工程师，团队最多有 17 人。我做 NBA Data Science Studio 的课程，希望大家能从篮球问题入手学习统计学。我自己也一样，每天都在温故知新。"
+        }
+      ]
+    }
+  ],
+  "ending": {
+    "title": "谢谢你读到这里",
+    "text": "希望这些故事让你多了解了我一点。如果其中有什么让你想聊聊，欢迎写信给我。"
+  },
+  "thread": [
+    {
+      "id": "warehouse-layout",
+      "chapter": "craft",
+      "title": "科学仓储布局",
+      "where": "京东",
+      "when": "2015 年",
+      "old": "顾客经常一起购买的商品",
+      "next": "更短的仓库拣货路径、京东金项目奖一等奖，以及一篇发表的论文",
+      "tags": [
+        "work"
+      ]
+    },
+    {
+      "id": "anomaly-diagnosis",
+      "chapter": "craft",
+      "title": "自动化异常诊断",
+      "where": "阿里巴巴 · 淘宝闪购",
+      "when": "2021 年至今",
+      "old": "每天数百亿条历史事件",
+      "next": "找到异常指标的原因，带着证据，把告警送到负责的团队",
+      "tags": [
+        "work"
+      ]
+    },
+    {
+      "id": "nl2sql",
+      "chapter": "craft",
+      "title": "用自然语言查数据（NL2SQL）",
+      "where": "阿里巴巴 · 淘宝闪购",
+      "when": "2021 年至今",
+      "old": "专家已经编写、验证过的 SQL",
+      "next": "让每个人都能用日常语言提问，回答比 AI 自由编写 SQL 更准确",
+      "tags": [
+        "work"
+      ]
+    },
+    {
+      "id": "lesmots",
+      "chapter": "languages",
+      "title": "LesMots",
+      "where": "个人项目",
+      "when": "2026 年 7 月",
+      "old": "那些快要忘记的单词",
+      "next": "每天一篇新鲜新闻，用简单英语改写，恰好围绕这些单词",
+      "tags": [
+        "live",
+        "open-source"
+      ],
+      "links": [
+        {
+          "label": "打开应用",
+          "href": "https://lesmots-936108631310.europe-west1.run.app"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/marinelj/lesMots"
+        }
+      ]
+    },
+    {
+      "id": "record-linkage",
+      "chapter": "making",
+      "title": "记录匹配",
+      "where": "个人项目",
+      "when": "2026 年 7 月",
+      "old": "分散在各处、描述同一事物的记录",
+      "next": "一份匹配好、整理干净的数据",
+      "tags": [
+        "private"
+      ]
+    },
+    {
+      "id": "nba-studio",
+      "chapter": "court",
+      "title": "NBA Data Science Studio",
+      "where": "个人项目",
+      "when": "2026 年 9 月",
+      "old": "勒布朗·詹姆斯过去的比赛和赛季",
+      "next": "可以复现的短视频课程，用篮球教统计学和机器学习",
+      "tags": [
+        "open-source"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "href": "https://github.com/marinelj/nba-data-science-studio"
+        }
+      ]
+    },
+    {
+      "id": "hoopformer",
+      "chapter": "court",
+      "title": "Hoopformer",
+      "where": "个人项目",
+      "when": "2026 年 9 月",
+      "old": "十个 NBA 赛季的逐回合记录，约 250 万个进攻回合",
+      "next": "学出每位球员的向量，再做出面向 2026–27 赛季的模拟器",
+      "detail": "每一项结论，都公开与简单的基准方法比较、评分。",
+      "tags": [
+        "open-source"
+      ],
+      "links": [
+        {
+          "label": "GitHub",
+          "href": "https://github.com/marinelj/hoopformer"
+        }
+      ]
+    },
+    {
+      "id": "congdong",
+      "chapter": "court",
+      "title": "丛动体育",
+      "where": "北京",
+      "when": "2026 年 10 月",
+      "role": "我赞助了它，也为它做了网站",
+      "old": "日复一日的训练",
+      "next": "让年轻球员准备好迎接更高水平的比赛，也为升学铺一条路",
+      "detail": "在北京郊外的怀柔、密云两处基地开设训练营，项目包括篮球、足球、网球、羽毛球等。",
+      "tags": [
+        "live"
+      ],
+      "links": [
+        {
+          "label": "访问网站",
+          "href": "https://marinelj.github.io/congdong/"
+        },
+        {
+          "label": "GitHub",
+          "href": "https://github.com/marinelj/congdong"
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "chapter": "making",
+      "title": "财务管理",
+      "where": "个人项目",
+      "when": "2026 年 10 月",
+      "old": "把每张卡、每笔贷款和每个还款日列在一起",
+      "next": "今天用哪张卡最合适，以及还债、储蓄、投资的分步计划",
+      "detail": "一个优先把数据保存在本地的应用，支持 iOS 和 Android。",
+      "tags": [
+        "private"
+      ]
+    },
+    {
+      "id": "reel",
+      "chapter": "making",
+      "title": "REEL · Reality Engine",
+      "where": "个人项目",
+      "when": "2026 年 10 月",
+      "old": "一段视频，或实时摄像画面",
+      "next": "一个可以走进去的 3D 场景，在第一人称小游戏中与物体互动",
+      "detail": "用 Unity 开发，通过本地 AI 模型估计深度、识别物体。",
+      "tags": [
+        "private"
+      ]
+    },
+    {
+      "id": "this-site",
+      "chapter": "making",
+      "title": "这个网站",
+      "where": "个人项目",
+      "when": "2026 年 10 月",
+      "old": "我的简历",
+      "next": "你正在读的故事",
+      "tags": [
+        "live"
+      ]
+    }
+  ],
+  "photos": [
+    {
+      "id": "family-selfie",
+      "group": "family",
+      "sources": [
+        {
+          "src": "/images/story/family-selfie-600.webp",
+          "width": 600
+        },
+        {
+          "src": "/images/story/family-selfie-800.webp",
+          "width": 800
+        },
+        {
+          "src": "/images/story/family-selfie-1200.webp",
+          "width": 1200
+        }
+      ],
+      "width": 1200,
+      "height": 900,
+      "alt": "李嘉与女儿、儿子一起自拍",
+      "caption": "和女儿、儿子在一起"
+    },
+    {
+      "id": "family-trio",
+      "group": "family",
+      "sources": [
+        {
+          "src": "/images/story/family-trio-400.webp",
+          "width": 400
+        },
+        {
+          "src": "/images/story/family-trio-800.webp",
+          "width": 800
+        }
+      ],
+      "width": 800,
+      "height": 1200,
+      "alt": "李嘉与女儿、儿子三人的合影自拍",
+      "caption": "我们三个"
+    },
+    {
+      "id": "family-son",
+      "group": "family",
+      "sources": [
+        {
+          "src": "/images/story/family-son-400.webp",
+          "width": 400
+        },
+        {
+          "src": "/images/story/family-son-800.webp",
+          "width": 800
+        }
+      ],
+      "width": 800,
+      "height": 1067,
+      "alt": "李嘉与儿子自拍",
+      "caption": "和儿子在一起"
+    },
+    {
+      "id": "younger-white",
+      "group": "younger",
+      "sources": [
+        {
+          "src": "/images/story/younger-white-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/younger-white-720.webp",
+          "width": 720
+        }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "年轻时的李嘉，穿着白色 T 恤",
+      "caption": "年轻时的我"
+    },
+    {
+      "id": "younger-hoodie",
+      "group": "younger",
+      "sources": [
+        {
+          "src": "/images/story/younger-hoodie-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/younger-hoodie-720.webp",
+          "width": 720
+        }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "年轻时的李嘉，穿着黄色连帽衫，站在树丛间",
+      "caption": "多年前，在树丛间"
+    },
+    {
+      "id": "younger-computer",
+      "group": "younger",
+      "sources": [
+        {
+          "src": "/images/story/younger-computer-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/younger-computer-641.webp",
+          "width": 641
+        }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "年轻时的李嘉在机房里，屏幕上打开着 Eclipse",
+      "caption": "多年前，在机房"
+    },
+    {
+      "id": "younger-boat",
+      "group": "younger",
+      "sources": [
+        {
+          "src": "/images/story/younger-boat-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/younger-boat-720.webp",
+          "width": 720
+        }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "年轻时的李嘉坐在水边，头顶是彩绘屋檐",
+      "caption": "在水边"
+    },
+    {
+      "id": "younger-hat",
+      "group": "younger",
+      "sources": [
+        {
+          "src": "/images/story/younger-hat-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/younger-hat-600.webp",
+          "width": 600
+        }
+      ],
+      "width": 600,
+      "height": 450,
+      "alt": "年轻时的李嘉戴着一顶宽大的条纹遮阳帽，身旁是水巷",
+      "caption": "在苏州"
+    },
+    {
+      "id": "younger-chengdu",
+      "group": "younger",
+      "sources": [
+        {
+          "src": "/images/story/younger-chengdu-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/younger-chengdu-720.webp",
+          "width": 720
+        }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "李嘉站在成都锦里的石牌坊下",
+      "caption": "在成都锦里"
+    },
+    {
+      "id": "court-dribble",
+      "group": "court",
+      "sources": [
+        {
+          "src": "/images/story/court-dribble-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/court-dribble-720.webp",
+          "width": 720
+        }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "李嘉穿着红色上衣，在室内球场运球推进",
+      "caption": "带球向前"
+    },
+    {
+      "id": "court-jump",
+      "group": "court",
+      "sources": [
+        {
+          "src": "/images/story/court-jump-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/court-jump-720.webp",
+          "width": 720
+        }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "李嘉穿着红色上衣起跳投篮",
+      "caption": "跳投"
+    },
+    {
+      "id": "portrait",
+      "group": "work",
+      "sources": [
+        {
+          "src": "/images/story/jd-store-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/jd-store-480.webp",
+          "width": 480
+        }
+      ],
+      "width": 480,
+      "height": 480,
+      "alt": "李嘉在京东无人超市",
+      "caption": "在京东无人超市"
+    },
+    {
+      "id": "suzhou-canal",
+      "group": "travel",
+      "sources": [
+        {
+          "src": "/images/story/suzhou-canal-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/suzhou-canal-641.webp",
+          "width": 641
+        }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "苏州一条平静的水巷，两岸是白墙民居",
+      "caption": "苏州的水巷"
+    },
+    {
+      "id": "chengdu-lanterns",
+      "group": "travel",
+      "sources": [
+        {
+          "src": "/images/story/chengdu-lanterns-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/chengdu-lanterns-800.webp",
+          "width": 800
+        }
+      ],
+      "width": 800,
+      "height": 600,
+      "alt": "成都一条挂着红灯笼的小巷，巷中撑着咖啡馆的遮阳伞",
+      "caption": "成都的灯笼小巷"
+    },
+    {
+      "id": "suzhou-rooftops",
+      "group": "travel",
+      "sources": [
+        {
+          "src": "/images/story/suzhou-rooftops-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/suzhou-rooftops-641.webp",
+          "width": 641
+        }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "苏州园林里的灰瓦屋顶和弯曲的亭檐",
+      "caption": "苏州园林的屋顶"
+    },
+    {
+      "id": "beijing-summer-palace",
+      "group": "travel",
+      "sources": [
+        {
+          "src": "/images/story/beijing-summer-palace-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/beijing-summer-palace-720.webp",
+          "width": 720
+        }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "颐和园昆明湖上的游船，旁边是十七孔桥",
+      "caption": "北京颐和园"
+    },
+    {
+      "id": "suzhou-garden",
+      "group": "travel",
+      "sources": [
+        {
+          "src": "/images/story/suzhou-garden-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/suzhou-garden-641.webp",
+          "width": 641
+        }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "苏州园林的白墙上开着花形门洞，门前有石阶",
+      "caption": "苏州园林的门洞"
+    },
+    {
+      "id": "chengdu-loom",
+      "group": "travel",
+      "sources": [
+        {
+          "src": "/images/story/chengdu-loom-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/chengdu-loom-720.webp",
+          "width": 720
+        }
+      ],
+      "width": 720,
+      "height": 540,
+      "alt": "一台穿着白色丝线的大型木织机",
+      "caption": "成都的老织机"
+    },
+    {
+      "id": "suzhou-lake",
+      "group": "travel",
+      "sources": [
+        {
+          "src": "/images/story/suzhou-lake-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/suzhou-lake-641.webp",
+          "width": 641
+        }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "苏州的湖面、亭子和柳树",
+      "caption": "苏州的湖与亭"
+    },
+    {
+      "id": "suzhou-willows",
+      "group": "travel",
+      "sources": [
+        {
+          "src": "/images/story/suzhou-willows-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/suzhou-willows-641.webp",
+          "width": 641
+        }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "柳树垂在碧绿的水巷上，一艘小木船停在水中",
+      "caption": "苏州的柳树与小船"
+    },
+    {
+      "id": "suzhou-gateway",
+      "group": "travel",
+      "sources": [
+        {
+          "src": "/images/story/suzhou-gateway-360.webp",
+          "width": 360
+        },
+        {
+          "src": "/images/story/suzhou-gateway-641.webp",
+          "width": 641
+        }
+      ],
+      "width": 641,
+      "height": 481,
+      "alt": "苏州老宅上的砖雕门楼",
+      "caption": "苏州的雕花门楼"
+    }
+  ]
+}

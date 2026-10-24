@@ -1,6 +1,6 @@
 # marinelj.github.io
 
-The personal website of Jia Li (Marine Lee), told as one story with one main plot: "review the old to discover the new". The site is English only.
+The personal website of Jia Li (Marine Lee), told as one story with one main plot: "review the old to discover the new". The English site is at `/`; an independently written Simplified Chinese version is at `/zh/`.
 
 **Live site: https://marinelj.github.io**
 
@@ -65,6 +65,17 @@ Add its name to `EXCLUDED_REPOS` in `src/config/github.ts` (matching ignores cas
 export const EXCLUDED_REPOS = ["andoop", "marinelj.github.io", "another-repo"];
 ```
 
-The site is English only. `REPO_DESCRIPTIONS` in the same file gives a repo an English description to show instead of its GitHub one; a Chinese description with no entry there is hidden.
+On English pages, `REPO_DESCRIPTIONS` in the same file gives a repo an English description to show instead of its GitHub one; a Chinese description with no entry there is hidden.
 
 Forks and archived repos are hidden by default (`INCLUDE_FORKS`, `INCLUDE_ARCHIVED`). `EXCLUDED_LANGUAGES` keeps a language, currently HTML, out of the language chart. The build fails if an excluded repo ever appears in the site (`npm run check:exclusions`).
+
+## Edit the Chinese version
+
+The five English pages each have a matching page under `/zh/`, with a language link in the header and mobile menu. Separate root layouts in `src/app/(en)/` and `src/app/(zh)/` set `lang="en"` and `lang="zh-CN"`; changing language loads a fresh document.
+
+- Edit `src/data/story.zh.json` and `src/data/profile.zh.json` for Chinese writing. They have the same shape, ids, photo sources, external URLs and facts as their English counterparts. Keep both versions in sync when facts change. Chinese internal page links start with `/zh/`; the résumé PDF is shared and labeled as English.
+- Edit `src/i18n/en.json` and `src/i18n/zh.json` for interface wording. Server-selected strings are passed to shared components; client components never import either dictionary. Shared page components live in `src/components/pages/`.
+- Edit `src/i18n/metadata.zh.ts` for Chinese page titles and descriptions. The Chinese sharing image and its alt text are in `src/app/(zh)/zh/`. It uses the same younger/work photos as the English image. Fonts fall back to local Chinese system fonts, without a Chinese font download.
+- `REPO_DESCRIPTIONS_ZH` in `src/config/github.ts` supplies Chinese descriptions when GitHub does not already provide one. English descriptions retain their existing fallback behavior. GitHub configuration and description selection stay on the server.
+
+After editing, run `npm run lint`, `npm run build`, `npm run check:exclusions` and `npm run check:languages`. The language check scans exported HTML, RSC text and XML outside `/zh/` and `/_next/` for Chinese/full-width characters, and verifies `zh-CN` on Chinese HTML. The deployment workflow runs both export checks. All ten pages publish together; review changes on a branch before merging to `main`.

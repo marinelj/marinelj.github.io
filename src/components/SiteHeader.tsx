@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRef, useState, type CSSProperties } from "react";
-import { NAV_ITEMS } from "@/config/site";
+import { localPath, type Dictionary, type Locale } from "@/i18n/types";
 import { setTheme, useTheme, type Theme } from "@/lib/theme";
 import {
   ChevronRightIcon,
@@ -17,16 +17,14 @@ import {
 import { ThemeToggle } from "./ThemeToggle";
 
 type Props = {
+  ui: Dictionary;
+  locale: Locale;
+  name: string;
   resumePdf: string;
   github: string;
   linkedin: string;
   mailto: string;
 };
-
-const APPEARANCE: { value: Theme; label: string }[] = [
-  { value: "light", label: "Light" },
-  { value: "dark", label: "Dark" },
-];
 
 function isCurrent(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -44,8 +42,13 @@ function Monogram() {
   );
 }
 
-export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
+export function SiteHeader({ resumePdf, github, linkedin, mailto, ui, locale, name }: Props) {
+  const home = localPath("/", locale);
+  const contact = localPath("/contact/", locale);
+  const nav = ["/", "/projects/", "/photos/", "/resume/", "/contact/"].map((href, index) => ({ href: localPath(href, locale), label: ui.nav[index] }));
+  const appearance: { value: Theme; label: string }[] = [{ value: "light", label: ui.light }, { value: "dark", label: ui.dark }];
   const pathname = usePathname();
+  const matchingPath = locale === "en" ? `/zh${pathname.endsWith("/") ? pathname : `${pathname}/`}` : pathname.replace(/^\/zh/, "") || "/";
   const menuRef = useRef<HTMLDialogElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const theme = useTheme();
@@ -59,15 +62,15 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
   return (
     <header className="no-print sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur-md">
       <div className="mx-auto flex min-h-16 max-w-[1200px] items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="group inline-flex min-h-11 items-center gap-2.5 rounded-lg text-fg">
+        <Link href={home} className="group inline-flex min-h-11 items-center gap-2.5 rounded-lg text-fg">
           <span className="transition-transform duration-300 group-hover:-rotate-6">
             <Monogram />
           </span>
-          <span className="text-base font-semibold">Jia Li</span>
+          <span className="text-base font-semibold">{name}</span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 lg:flex">
-          {NAV_ITEMS.filter((item) => item.href !== "/contact/").map((item) => {
+        <nav aria-label={ui.primary} className="hidden items-center gap-1 lg:flex">
+          {nav.filter((item) => item.href !== contact).map((item) => {
             const current = isCurrent(pathname, item.href);
             return (
               <Link
@@ -85,18 +88,19 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
         </nav>
 
         <div className="flex items-center gap-1 lg:gap-2">
-          <ThemeToggle className="lg:border lg:border-line lg:bg-surface" />
+          <a href={matchingPath} hrefLang={locale === "en" ? "zh-CN" : "en"} className="inline-flex min-h-11 items-center rounded-full px-3 text-sm font-medium text-fg-2 hover:bg-surface-2">{ui.language}</a>
+          <ThemeToggle ui={ui} className="lg:border lg:border-line lg:bg-surface" />
           <Link
-            href="/contact/"
-            aria-current={isCurrent(pathname, "/contact/") ? "page" : undefined}
+            href={contact}
+            aria-current={isCurrent(pathname, contact) ? "page" : undefined}
             className="press hidden h-11 items-center rounded-full bg-accent px-5 text-sm font-medium text-on-accent hover:bg-accent-hover lg:inline-flex"
           >
-            Contact
+            {ui.nav[4]}
           </Link>
           <button
             type="button"
             onClick={openMenu}
-            aria-label="Open menu"
+            aria-label={ui.openMenu}
             aria-haspopup="dialog"
             aria-expanded={menuOpen}
             aria-controls="site-menu"
@@ -110,27 +114,27 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
       <dialog
         id="site-menu"
         ref={menuRef}
-        aria-label="Site menu"
+        aria-label={ui.siteMenu}
         onClose={() => setMenuOpen(false)}
         className="m-0 h-dvh max-h-none w-full max-w-none flex-col overflow-y-auto border-0 bg-bg p-0 text-fg open:flex lg:hidden"
       >
         <div className="flex min-h-16 shrink-0 items-center justify-between border-b border-line px-4 sm:px-6">
           <span className="inline-flex items-center gap-2.5">
             <Monogram />
-            <span className="text-base font-semibold">Jia Li</span>
+            <span className="text-base font-semibold">{name}</span>
           </span>
           <button
             type="button"
             onClick={closeMenu}
-            aria-label="Close menu"
+            aria-label={ui.closeMenu}
             className="press inline-flex size-11 items-center justify-center rounded-xl bg-surface-2 text-fg"
           >
             <CloseIcon size={20} />
           </button>
         </div>
 
-        <nav aria-label="Primary" className="flex flex-col px-5 pt-3 sm:px-6">
-          {NAV_ITEMS.map((item, index) => {
+        <nav aria-label={ui.primary} className="flex flex-col px-5 pt-3 sm:px-6">
+          {nav.map((item, index) => {
             const current = isCurrent(pathname, item.href);
             return (
               <Link
@@ -155,7 +159,7 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
                 {current ? (
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-accent-soft px-2.5 py-1 font-mono text-[11px] text-accent">
                     <span className="size-[7px] rounded-full bg-accent" aria-hidden="true" />
-                    Current
+                    {ui.current}
                   </span>
                 ) : (
                   <ChevronRightIcon className="text-fg-3" />
@@ -165,13 +169,15 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
           })}
         </nav>
 
+        <a href={matchingPath} hrefLang={locale === "en" ? "zh-CN" : "en"} className="mx-5 mt-3 inline-flex min-h-11 items-center self-start rounded-full border border-line px-4 text-sm font-medium sm:mx-6">{ui.language}</a>
+
         <fieldset
           className="menu-item mt-7 flex flex-col gap-2.5 px-5 sm:px-6"
-          style={{ "--i": NAV_ITEMS.length } as CSSProperties}
+          style={{ "--i": nav.length } as CSSProperties}
         >
-          <legend className="eyebrow mb-2.5 text-fg-3">Appearance</legend>
+          <legend className="eyebrow mb-2.5 text-fg-3">{ui.appearance}</legend>
           <div className="grid grid-cols-2 gap-1 rounded-2xl bg-surface-2 p-1">
-            {APPEARANCE.map((option) => (
+            {appearance.map((option) => (
               <label key={option.value} className="relative">
                 <input
                   type="radio"
@@ -191,7 +197,7 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
 
         <div
           className="menu-item mt-auto flex flex-col gap-3 border-t border-line px-5 pt-5 pb-8 sm:px-6"
-          style={{ "--i": NAV_ITEMS.length + 1 } as CSSProperties}
+          style={{ "--i": nav.length + 1 } as CSSProperties}
         >
           <a
             href={resumePdf}
@@ -199,7 +205,7 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
             className="press flex h-12 items-center justify-center gap-2 rounded-full bg-accent text-base font-medium text-on-accent"
           >
             <DownloadIcon />
-            Download resume (PDF)
+            {ui.downloadResume}
           </a>
           <div className="grid grid-cols-3 gap-2.5">
             <a
@@ -218,7 +224,7 @@ export function SiteHeader({ resumePdf, github, linkedin, mailto }: Props) {
             </a>
             <a
               href={mailto}
-              aria-label="Email"
+              aria-label={ui.email}
               className="press flex h-12 items-center justify-center rounded-2xl border border-line bg-surface text-fg"
             >
               <MailIcon size={20} />
