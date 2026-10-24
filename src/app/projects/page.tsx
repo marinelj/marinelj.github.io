@@ -73,8 +73,8 @@ export default function ProjectsPage() {
     <>
       <PageHeader eyebrow="The thread" title="Every project, one story">
         <p className="max-w-[60ch] text-base leading-relaxed text-fg-2 sm:text-[17px]">
-          <span lang="zh-CN">温故而知新</span>: each project starts from something old and makes something new.
-          Here they all are, in the order they happened, from JD’s warehouse to the basketball court.
+          Each project starts from something old and makes something new. Here they all are, in the order they
+          happened, from JD’s warehouse to the basketball court.
         </p>
       </PageHeader>
 

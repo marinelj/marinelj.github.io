@@ -6,9 +6,7 @@
     "In my own time I build basketball models, lessons, apps and worlds you can play in. Each one starts from something old and makes something new. That’s the thread running through this story, and an old line from Confucius says it best."
   ],
   "motto": {
-    "short": "温故而知新",
-    "full": "温故而知新，可以为师矣。",
-    "translation": "Review the old to discover the new, and you can teach others.",
+    "quote": "Review the old to discover the new, and you can teach others.",
     "source": "Confucius, The Analects 2.11",
     "note": "Every project in this story starts from something old and makes something new. Follow the thread."
   },
@@ -16,7 +14,7 @@
   "chapters": [
     {
       "id": "roots",
-      "glyph": "根",
+      "icon": "sprout",
       "label": "Roots",
       "place": "Beijing",
       "title": "A coder at heart",
@@ -29,20 +27,20 @@
     },
     {
       "id": "languages",
-      "glyph": "语",
+      "icon": "chat",
       "label": "Languages",
       "place": "Hong Kong · Japan",
       "title": "Five years in English, and now Japanese",
       "blocks": [
         { "type": "text", "text": "From 2006 I built telecom software for China Mobile in Beijing and PCCW in Hong Kong, first as an engineer and then as a team lead. I spent five years on-site in Hong Kong, working in English every day." },
         { "type": "text", "text": "Now I’m learning Japanese. I love Japan. To me, it is a democratic and civilised country." },
-        { "type": "text", "text": "Learning a language is 温故而知新 at its simplest: you review old words until they become new sentences. LesMots, an app I built, works the same way." },
+        { "type": "text", "text": "Learning a language is the simplest case of reviewing the old to discover the new: old words, reviewed again and again, become new sentences. LesMots, an app I built, works the same way." },
         { "type": "thread" }
       ]
     },
     {
       "id": "craft",
-      "glyph": "业",
+      "icon": "database",
       "label": "Craft",
       "place": "JD.com · Alibaba",
       "title": "Yesterday’s data, tomorrow’s decisions",
@@ -50,14 +48,14 @@
         { "type": "text", "text": "In 2012 I joined JD.com and led a team of 17 engineers building the software for Asia No.1, then Asia’s largest automated warehouse. On Double 11 in 2015 I led the on-site technical command while it shipped 502,000 orders in 24 hours with zero downtime, a single-warehouse world record at the time." },
         { "type": "text", "text": "Since 2018 I’ve been at Alibaba: real-time data for Freshippo’s grocery stores, a shared data platform for four business units, and now the data behind Taobao Flash Sale, which handles more than ten million orders a day." },
         { "type": "stats" },
-        { "type": "text", "text": "The work is 温故而知新 every day. You read what already happened, carefully, and build what comes next on top of it." },
+        { "type": "text", "text": "The work is reviewing the old to discover the new, every day. You read what already happened, carefully, and build what comes next on top of it." },
         { "type": "thread" },
         { "type": "link", "href": "/resume/", "label": "Read my full resume" }
       ]
     },
     {
       "id": "court",
-      "glyph": "球",
+      "icon": "basketball",
       "label": "Court",
       "place": "Basketball",
       "title": "Where basketball meets data",
@@ -70,7 +68,7 @@
     },
     {
       "id": "making",
-      "glyph": "造",
+      "icon": "sparkles",
       "label": "Making",
       "place": "Side projects",
       "title": "Generating something new",
@@ -81,25 +79,25 @@
     },
     {
       "id": "photos",
-      "glyph": "影",
+      "icon": "camera",
       "label": "Photos",
       "place": "Family · Travel",
       "title": "The people and places in my story",
       "blocks": [
         { "type": "photos", "ids": ["family-selfie", "family-trio", "family-son"], "layout": "feature" },
-        { "type": "text", "text": "And old towns: Suzhou’s canals and gardens, Chengdu’s lantern-lit lanes. 温故, quite literally." },
+        { "type": "text", "text": "And old towns: Suzhou’s canals and gardens, Chengdu’s lantern-lit lanes. The old, quite literally." },
         { "type": "photos", "ids": ["suzhou-canal", "chengdu-lanterns", "suzhou-rooftops"] },
         { "type": "link", "href": "/photos/", "label": "See all photos" }
       ]
     },
     {
       "id": "teaching",
-      "glyph": "师",
+      "icon": "cap",
       "label": "Teaching",
       "place": "The rest of the line",
       "title": "…and you can teach others",
       "blocks": [
-        { "type": "text", "text": "The line from Confucius ends with teaching: 可以为师矣, “then you can teach others.”" },
+        { "type": "text", "text": "The line from Confucius ends with teaching: “…and you can teach others.”" },
         { "type": "text", "text": "I’ve led and mentored engineering teams of up to 17 people. I make the NBA Data Science Studio lessons so that anyone can learn statistics through questions about the game. And I keep reviewing the old to learn the new, every day." }
       ]
     }
@@ -142,7 +140,7 @@
     {
       "id": "lesmots",
       "chapter": "languages",
-      "title": "LesMots · 温故",
+      "title": "LesMots",
       "where": "Personal",
       "when": "Jul 2026",
       "old": "The words you’re about to forget",
@@ -189,7 +187,7 @@
     {
       "id": "congdong",
       "chapter": "court",
-      "title": "Congdong Sports · 丛动体育",
+      "title": "Congdong Sports",
       "where": "Beijing",
       "when": "Oct 2026",
       "role": "I sponsor it, and I built its website",

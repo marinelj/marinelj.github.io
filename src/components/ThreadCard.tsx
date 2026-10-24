@@ -1,7 +1,6 @@
 import { chapterById, story, type ThreadItem, type ThreadTag } from "@/lib/story";
-import { Glyph } from "./Glyph";
+import { ChapterIcon } from "./ChapterIcon";
 import { ArrowRightIcon, ArrowUpRightIcon } from "./Icons";
-import { MixedText } from "./MixedText";
 import { delay, tintAt } from "./ui";
 
 const TAGS: Record<ThreadTag, { label: string; className: string }> = {
@@ -12,8 +11,8 @@ const TAGS: Record<ThreadTag, { label: string; className: string }> = {
 };
 
 /**
- * One project told the way the whole story is: 温故 (what it starts from) → 知新
- * (what it makes). With `showChapter`, it also links back to its chapter.
+ * One project told the way the whole story is: the old thing it starts from, and the
+ * new thing it makes. With `showChapter`, it also links back to its chapter.
  */
 export function ThreadCard({
   item,
@@ -40,9 +39,7 @@ export function ThreadCard({
     >
       <header className="flex flex-wrap items-start justify-between gap-x-4 gap-y-2">
         <div className="flex min-w-0 flex-col gap-1">
-          <Heading className="text-lg leading-snug font-semibold tracking-[-0.01em] sm:text-xl">
-            <MixedText text={item.title} />
-          </Heading>
+          <Heading className="text-lg leading-snug font-semibold tracking-[-0.01em] sm:text-xl">{item.title}</Heading>
           <p className="font-mono text-xs text-fg-3">
             {item.where} · {item.when}
           </p>
@@ -63,9 +60,7 @@ export function ThreadCard({
 
       <div className="grid md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] md:items-stretch">
         <p className="m-0 flex flex-col gap-1.5 rounded-xl border border-dashed border-fg-3/40 bg-bg p-4">
-          <span className="eyebrow text-fg-3">
-            <span lang="zh-CN">温故</span> · From
-          </span>
+          <span className="eyebrow text-fg-3">The old</span>
           <span className="text-[15px] leading-snug text-fg-2">{item.old}</span>
         </p>
         <span
@@ -75,9 +70,7 @@ export function ThreadCard({
           <ArrowRightIcon size={16} className="rotate-90 md:rotate-0" />
         </span>
         <p className={`m-0 flex flex-col gap-1.5 rounded-xl p-4 ${tint.bg}`}>
-          <span className="eyebrow text-fg-2">
-            <span lang="zh-CN">知新</span> · To
-          </span>
+          <span className="eyebrow text-fg-2">The new</span>
           <span className="text-[15px] leading-snug font-medium text-fg">{item.next}</span>
         </p>
       </div>
@@ -92,7 +85,7 @@ export function ThreadCard({
                 href={`/#${chapter.id}`}
                 className="press inline-flex h-11 items-center gap-2 rounded-full border border-line bg-surface pr-4 pl-1.5 text-sm font-medium text-fg hover:border-accent/40 hover:bg-accent-soft"
               >
-                <Glyph char={chapter.glyph} index={chapterIndex} size="xs" />
+                <ChapterIcon icon={chapter.icon} index={chapterIndex} size="xs" />
                 Chapter {chapterIndex + 1}: {chapter.label}
               </a>
             </li>

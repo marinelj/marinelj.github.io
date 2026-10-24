@@ -239,3 +239,73 @@ export function GlobeIcon(props: IconProps) {
     </Stroke>
   );
 }
+
+/* Chapter icons */
+
+export function SproutIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M12 20v-8" />
+      <path d="M12 12c0-3.6 2.6-6.2 6.8-6.2 0 3.6-2.6 6.2-6.8 6.2Z" />
+      <path d="M12 14.5c0-3-2.2-5.2-5.8-5.2 0 3 2.2 5.2 5.8 5.2Z" />
+      <path d="M7.5 20h9" />
+    </Stroke>
+  );
+}
+
+export function ChatIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M4 4.5h9.5a2 2 0 0 1 2 2V11a2 2 0 0 1-2 2H8.5L5.5 15.5V13H4a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2Z" />
+      <path d="M18.5 8.5H20a2 2 0 0 1 2 2V15a2 2 0 0 1-2 2h-1.5v2.5L15.5 17h-4a2 2 0 0 1-2-2v-.5" />
+    </Stroke>
+  );
+}
+
+export function DatabaseIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <ellipse cx="12" cy="5.5" rx="7" ry="2.5" />
+      <path d="M5 5.5v6.5c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V5.5" />
+      <path d="M5 12v6.5c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V12" />
+    </Stroke>
+  );
+}
+
+export function BasketballIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M3 12h18M12 3v18" />
+      <path d="M5.6 5.6c2.6 2.6 2.6 10.2 0 12.8M18.4 5.6c-2.6 2.6-2.6 10.2 0 12.8" />
+    </Stroke>
+  );
+}
+
+export function SparklesIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M11 3l1.9 4.6L17.5 9.5l-4.6 1.9L11 16l-1.9-4.6L4.5 9.5l4.6-1.9Z" />
+      <path d="M18.5 14.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9Z" />
+    </Stroke>
+  );
+}
+
+export function CameraIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M4 7.5h3l1.6-2.5h6.8L17 7.5h3a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8.5a1 1 0 0 1 1-1Z" />
+      <circle cx="12" cy="13" r="3.5" />
+    </Stroke>
+  );
+}
+
+export function GraduationCapIcon(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M2 9.5 12 4.5l10 5-10 5Z" />
+      <path d="M6 11.5v4.5c0 1.5 2.7 3 6 3s6-1.5 6-3v-4.5" />
+      <path d="M22 9.5V15" />
+    </Stroke>
+  );
+}

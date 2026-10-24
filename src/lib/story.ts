@@ -12,10 +12,12 @@ export type Block =
   | { type: "photos"; ids: string[]; layout?: "feature" | "even" }
   | { type: "link"; href: string; label: string };
 
+export type ChapterIconName = "sprout" | "chat" | "database" | "basketball" | "sparkles" | "camera" | "cap";
+
 export type Chapter = {
   id: string;
-  /** One Chinese character that names the chapter. */
-  glyph: string;
+  /** The chapter's icon, shown in a pastel circle. */
+  icon: ChapterIconName;
   label: string;
   place: string;
   title: string;
@@ -24,7 +26,7 @@ export type Chapter = {
 
 export type ThreadTag = "work" | "open-source" | "live" | "private";
 
-/** A project told as "温故 → 知新": what it starts from, and what it makes. */
+/** A project told the way the story is: the old thing it starts from, and the new thing it makes. */
 export type ThreadItem = {
   id: string;
   chapter: string;
@@ -54,7 +56,7 @@ export type Story = {
   title: string;
   tagline: string;
   intro: string[];
-  motto: { short: string; full: string; translation: string; source: string; note: string };
+  motto: { quote: string; source: string; note: string };
   /** Hero stack, back to front. */
   heroPhotos: string[];
   chapters: Chapter[];

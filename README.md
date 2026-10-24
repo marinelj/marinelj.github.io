@@ -1,6 +1,6 @@
 # marinelj.github.io
 
-The personal website of Jia Li (李嘉, Marine Lee), told as one story: 温故而知新, "review the old to discover the new".
+The personal website of Jia Li (Marine Lee), told as one story with one main plot: "review the old to discover the new". The site is English only.
 
 **Live site: https://marinelj.github.io**
 
@@ -30,8 +30,8 @@ npm start       # serve out/ locally
 
 `src/data/story.json` holds the whole story:
 
-- **`chapters`:** each has a glyph, a label, a title and `blocks`, which render in order. A block can be `text`, `quote`, `stats` (the numbers from `profile.json`), `thread` (the chapter's projects), `photos` (a list of photo ids) or `link`.
-- **`thread`:** every project, in the order it happened. Each one has `old` (温故, what it starts from) and `next` (知新, what it makes), a `chapter`, `tags` (`work`, `open-source`, `live`, `private`) and optional `links`. Private projects have no links.
+- **`chapters`:** each has an `icon` (`sprout`, `chat`, `database`, `basketball`, `sparkles`, `camera` or `cap`), a label, a title and `blocks`, which render in order. A block can be `text`, `quote`, `stats` (the numbers from `profile.json`), `thread` (the chapter's projects), `photos` (a list of photo ids) or `link`.
+- **`thread`:** every project, in the order it happened. Each one has `old` (what it starts from) and `next` (what it makes), a `chapter`, `tags` (`work`, `open-source`, `live`, `private`) and optional `links`. Private projects have no links.
 - **`photos`:** every photo with its alt text, caption and group (`family`, `younger`, `court`, `travel`, `work`). Photos live in `public/images/story/` as pre-sized WebP copies listed in `sources`, smallest first.
 
 To add a photo, export two WebP copies (about 360 px and 720 px wide) with all EXIF and location data removed, put them in `public/images/story/`, then add an entry to `photos`. Only use photos of Jia Li, the family photos Jia Li chose, or scenery. Never use a photo where someone else is the subject, and blur the face of anyone else who could be recognized in the background.
@@ -64,5 +64,7 @@ Add its name to `EXCLUDED_REPOS` in `src/config/github.ts` (matching ignores cas
 ```ts
 export const EXCLUDED_REPOS = ["andoop", "marinelj.github.io", "another-repo"];
 ```
+
+The site is English only. `REPO_DESCRIPTIONS` in the same file gives a repo an English description to show instead of its GitHub one; a Chinese description with no entry there is hidden.
 
 Forks and archived repos are hidden by default (`INCLUDE_FORKS`, `INCLUDE_ARCHIVED`). `EXCLUDED_LANGUAGES` keeps a language, currently HTML, out of the language chart. The build fails if an excluded repo ever appears in the site (`npm run check:exclusions`).

@@ -23,7 +23,6 @@ export type Job = {
 export type Profile = {
   name: string;
   aka: string;
-  nativeName: string;
   headline: string;
   focus: string[];
   location: string;

@@ -52,7 +52,7 @@ export function RepoCard({
       {repo.description ? (
         <p className="text-sm leading-relaxed text-fg-2">{repo.description}</p>
       ) : (
-        <p className="text-sm leading-relaxed text-fg-3 italic">No description on GitHub yet.</p>
+        <p className="text-sm leading-relaxed text-fg-3 italic">No description yet.</p>
       )}
 
       {repo.topics.length > 0 && (

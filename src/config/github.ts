@@ -7,6 +7,15 @@ export const GITHUB_USERNAME = "marinelj";
  */
 export const EXCLUDED_REPOS = ["andoop", "marinelj.github.io"];
 
+/**
+ * The site is English only. These replace a repo's GitHub description (names match
+ * case-insensitively). A description in Chinese with no entry here is hidden.
+ */
+export const REPO_DESCRIPTIONS: Record<string, string> = {
+  congdong:
+    "Official website of Congdong Sports: a mobile-first static site (Vite) that publishes to GitHub Pages on every push to main.",
+};
+
 /** Forks and archived repos stay hidden unless these are switched on. */
 export const INCLUDE_FORKS = false;
 export const INCLUDE_ARCHIVED = false;

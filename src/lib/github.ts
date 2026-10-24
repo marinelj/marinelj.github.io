@@ -1,7 +1,7 @@
 // Build-time helpers for the GitHub dashboard. Import only from Server Components so the
 // config (and its exclusion list) never ships to the browser; pass results down as props.
 import data from "@/data/github.json";
-import { EXCLUDED_LANGUAGES } from "@/config/github";
+import { EXCLUDED_LANGUAGES, REPO_DESCRIPTIONS } from "@/config/github";
 
 export type Repo = {
   name: string;
@@ -56,6 +56,14 @@ const MAX_SERIES = 3;
 
 const excludedLanguages = new Set(EXCLUDED_LANGUAGES.map((name) => name.toLowerCase()));
 
+const descriptions = new Map(Object.entries(REPO_DESCRIPTIONS).map(([name, text]) => [name.toLowerCase(), text]));
+const CHINESE = /[㐀-鿿]/;
+
+/** The English description to show: the config's, else GitHub's unless it's in Chinese. */
+function englishDescription({ name, description }: Pick<Repo, "name" | "description">) {
+  return descriptions.get(name.toLowerCase()) ?? (description && !CHINESE.test(description) ? description : null);
+}
+
 export function languageBreakdown(repos: Repo[] = github.repos): LanguageSlice[] {
   const totals = new Map<string, number>();
   for (const repo of repos) {
@@ -107,7 +115,7 @@ export function repoViews(repos: Repo[] = github.repos): RepoView[] {
       else segments.push({ name, share: bytes / total, color: colorFor(name) });
     }
     if (other > 0) segments.push({ name: "other", share: other / total, color: "chart-other" });
-    return { ...repo, languageColor: colorFor(repo.language), segments };
+    return { ...repo, description: englishDescription(repo), languageColor: colorFor(repo.language), segments };
   });
 }
 

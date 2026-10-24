@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { Glyph } from "@/components/Glyph";
+import { ChapterIcon } from "@/components/ChapterIcon";
 import {
   ActivityIcon,
   ArrowDownIcon,
@@ -10,7 +10,6 @@ import {
   TrophyIcon,
   UsersIcon,
 } from "@/components/Icons";
-import { MixedText } from "@/components/MixedText";
 import { PhotoGrid, PhotoStack } from "@/components/Photo";
 import { ThreadCard } from "@/components/ThreadCard";
 import { ButtonLink, Container, StatTile, TextLink, delay } from "@/components/ui";
@@ -74,7 +73,7 @@ function Hero() {
               {profile.name}
             </h1>
             <p className="reveal text-lg text-fg-2 sm:text-xl" style={delay(100)}>
-              <span lang="zh-CN">{profile.nativeName}</span> · {profile.aka}
+              Also known as {profile.aka}
             </p>
           </div>
           <p
@@ -115,18 +114,15 @@ function Epigraph() {
         aria-labelledby="motto"
         className="reveal pastel-wash rounded-3xl border border-line px-5 py-10 text-center sm:px-12 sm:py-14"
       >
-        <p className="eyebrow text-accent">The main plot</p>
-        <h2
-          id="motto"
-          lang="zh-CN"
-          className="wipe mt-4 pl-[0.14em] font-zh text-[48px] leading-tight tracking-[0.14em] sm:text-[76px] lg:text-[92px]"
-        >
-          <span className="bg-linear-90 from-accent to-accent-2 bg-clip-text text-transparent">{motto.short}</span>
+        <h2 id="motto" className="eyebrow text-accent">
+          The main plot
         </h2>
-        <p className="mx-auto mt-5 max-w-[34ch] text-lg leading-snug font-medium sm:text-2xl">“{motto.translation}”</p>
-        <p className="mt-3 font-mono text-xs leading-relaxed text-fg-3">
-          {motto.source} · <span lang="zh-CN">{motto.full}</span>
-        </p>
+        <figure className="m-0 mt-4">
+          <blockquote className="wipe mx-auto max-w-[22ch] text-[30px] leading-[1.15] font-semibold tracking-[-0.025em] sm:text-[44px] lg:text-[54px]">
+            <span className="bg-linear-90 from-accent to-accent-2 bg-clip-text text-transparent">“{motto.quote}”</span>
+          </blockquote>
+          <figcaption className="mt-4 font-mono text-xs text-fg-3">{motto.source}</figcaption>
+        </figure>
         <p className="mx-auto mt-6 max-w-[52ch] text-base leading-relaxed text-fg-2">{motto.note}</p>
       </section>
     </Container>
@@ -147,7 +143,7 @@ function Contents() {
                 href={`#${chapter.id}`}
                 className="lift flex h-full min-h-14 items-center gap-3 rounded-2xl border border-line bg-surface p-2.5 sm:min-h-[68px] sm:p-4"
               >
-                <Glyph char={chapter.glyph} index={index} size="sm" />
+                <ChapterIcon icon={chapter.icon} index={index} size="sm" />
                 {/* Phones show the chapter name only; wider screens add its title. */}
                 <span className="flex min-w-0 flex-col gap-0.5">
                   <span className="font-mono text-[11px] text-fg-3">
@@ -155,9 +151,7 @@ function Contents() {
                     <span className="hidden sm:inline"> · {chapter.label}</span>
                   </span>
                   <span className="text-[15px] leading-snug font-medium text-fg sm:hidden">{chapter.label}</span>
-                  <span className="hidden text-[15px] leading-snug font-medium text-fg sm:block">
-                    <MixedText text={chapter.title} />
-                  </span>
+                  <span className="hidden text-[15px] leading-snug font-medium text-fg sm:block">{chapter.title}</span>
                 </span>
               </a>
             </li>
@@ -172,9 +166,7 @@ function ChapterBlock({ block, chapterId }: { block: Block; chapterId: string })
   switch (block.type) {
     case "text":
       return (
-        <p className="reveal max-w-[64ch] text-base leading-relaxed text-fg-2 sm:text-[17px]">
-          <MixedText text={block.text} />
-        </p>
+        <p className="reveal max-w-[64ch] text-base leading-relaxed text-fg-2 sm:text-[17px]">{block.text}</p>
       );
     case "quote":
       return (
@@ -226,16 +218,16 @@ function ChapterSection({ chapter, index }: { chapter: Chapter; index: number })
       aria-labelledby={titleId}
       className="grid gap-6 py-10 sm:py-14 lg:grid-cols-[72px_minmax(0,1fr)] lg:gap-10"
     >
-      {/* On wide screens the chapter's glyph rides down the thread while you read. */}
+      {/* On wide screens the chapter's icon rides down the thread while you read. */}
       <div className="hidden lg:block">
         <div className="sticky top-24 rounded-full ring-8 ring-bg">
-          <Glyph char={chapter.glyph} index={index} size="lg" className="pop" />
+          <ChapterIcon icon={chapter.icon} index={index} size="lg" className="pop" />
         </div>
       </div>
       <div className="flex min-w-0 flex-col gap-6">
         <header className="reveal flex flex-col gap-3 lg:gap-1.5">
           <div className="flex items-center gap-3">
-            <Glyph char={chapter.glyph} index={index} className="lg:hidden" />
+            <ChapterIcon icon={chapter.icon} index={index} className="lg:hidden" />
             <p className="eyebrow flex flex-wrap gap-x-2 text-accent">
               <span className="whitespace-nowrap">
                 Chapter {index + 1} · {chapter.label}
@@ -247,7 +239,7 @@ function ChapterSection({ chapter, index }: { chapter: Chapter; index: number })
             id={titleId}
             className="text-[28px] leading-[1.12] font-semibold tracking-[-0.02em] sm:text-[36px] lg:text-[40px]"
           >
-            <MixedText text={chapter.title} />
+            {chapter.title}
           </h2>
         </header>
         {chapter.blocks.map((block, blockIndex) => (
@@ -282,8 +274,12 @@ function Ending() {
         aria-labelledby="ending"
         className="reveal pastel-wash flex flex-col items-center gap-5 rounded-3xl border border-line px-5 py-12 text-center sm:px-12 sm:py-16"
       >
-        <span className="seal pop" lang="zh-CN" aria-hidden="true">
-          {profile.nativeName}
+        {/* Signed with the same monogram as the header. */}
+        <span
+          className="pop inline-flex size-14 -rotate-6 items-center justify-center rounded-2xl bg-linear-135 from-[#6b4ef0] to-[#c2306e] text-lg font-semibold tracking-tight text-white shadow-[0_12px_28px_-10px_rgb(107_78_240/0.6)]"
+          aria-hidden="true"
+        >
+          JL
         </span>
         <h2 id="ending" className="text-[28px] leading-tight font-semibold tracking-[-0.02em] sm:text-[36px]">
           {story.ending.title}
